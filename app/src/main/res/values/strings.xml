@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Super Trunfo Clone</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_title_fragment">Hello title fragment</string>
+    <string name="title_description">The original Grow\'s epic cards game, now on Android!</string>
+    <string name="play_button">Play Now</string>
+    <string name="made_by">This app was made by a fan.\nCheck out github.com/duhdoesk for more.</string>
 </resources>
