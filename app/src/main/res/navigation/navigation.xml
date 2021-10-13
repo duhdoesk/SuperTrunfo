@@ -3,20 +3,66 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/titleFragment">
+    app:startDestination="@id/destination_title">
 
     <fragment
-        android:id="@+id/titleFragment"
+        android:id="@+id/destination_title"
         android:name="com.duhdoesk.supertrunfoclone.title.TitleFragment"
         android:label="fragment_title"
-        tools:layout="@layout/fragment_title" >
+        tools:layout="@layout/fragment_title">
         <action
-            android:id="@+id/action_titleFragment_to_collectionFragment"
-            app:destination="@id/collectionFragment" />
+            android:id="@+id/action_destination_title_to_destination_collection"
+            app:destination="@id/destination_collection" />
+        <action
+            android:id="@+id/action_destination_title_to_destination_about"
+            app:destination="@id/destination_about" />
+        <action
+            android:id="@+id/action_destination_title_to_destination_rules"
+            app:destination="@id/destination_rules" />
     </fragment>
     <fragment
-        android:id="@+id/collectionFragment"
+        android:id="@+id/destination_collection"
         android:name="com.duhdoesk.supertrunfoclone.collection.CollectionFragment"
         android:label="fragment_collection"
-        tools:layout="@layout/fragment_collection" />
+        tools:layout="@layout/fragment_collection" >
+        <action
+            android:id="@+id/action_destination_collection_to_destination_inGame"
+            app:destination="@id/destination_inGame" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_inGame"
+        android:name="com.duhdoesk.supertrunfoclone.inGame.InGameFragment"
+        android:label="InGameFragment" >
+        <action
+            android:id="@+id/action_destination_inGame_to_destination_gameWon"
+            app:destination="@id/destination_gameWon" />
+        <action
+            android:id="@+id/action_destination_inGame_to_destination_gameOver"
+            app:destination="@id/destination_gameOver" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_gameWon"
+        android:name="com.duhdoesk.supertrunfoclone.ending.GameWonFragment"
+        android:label="GameWonFragment" >
+        <action
+            android:id="@+id/action_destination_gameWon_to_destination_collection"
+            app:destination="@id/destination_collection" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_gameOver"
+        android:name="com.duhdoesk.supertrunfoclone.ending.GameOverFragment"
+        android:label="fragment_game_over"
+        tools:layout="@layout/fragment_game_over" >
+        <action
+            android:id="@+id/action_destination_gameOver_to_destination_collection"
+            app:destination="@id/destination_collection" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_about"
+        android:name="com.duhdoesk.supertrunfoclone.etc.AboutFragment"
+        android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/destination_rules"
+        android:name="com.duhdoesk.supertrunfoclone.etc.RulesFragment"
+        android:label="RulesFragment" />
 </navigation>
