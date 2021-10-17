@@ -4,5 +4,16 @@
     <string name="hello_title_fragment">Hello title fragment</string>
     <string name="title_description">The original Grow\'s epic cards game, now on Android!</string>
     <string name="play_button">Play Now</string>
-    <string name="made_by">This app was made by a fan.\nCheck out github.com/duhdoesk for more.</string>
+    <string name="made_by">
+        This app was made by a fan, with only studying purposes.\n
+        Check out the about section for more info.
+    </string>
+
+    <string name="about_description">
+        Hi!\n
+        I\'m Eduardo Scaranari, the developer of this app.\n\n
+        As a huge fan of the Grow\'s Super Trunfo Battle Cards and also an Android student, I just
+        decided to code it for practice.\n\n
+        Hope you enjoy it and, if you do, don\'t hesitate on contacting me using one of the channels below.
+    </string>
 </resources>
