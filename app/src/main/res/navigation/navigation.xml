@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/destination_title"
         android:name="com.duhdoesk.supertrunfoclone.title.TitleFragment"
-        android:label="fragment_title"
+        android:label="Super Trunfo Battle Cards"
         tools:layout="@layout/fragment_title">
         <action
             android:id="@+id/action_destination_title_to_destination_collection"
@@ -60,9 +60,9 @@
     <fragment
         android:id="@+id/destination_about"
         android:name="com.duhdoesk.supertrunfoclone.etc.AboutFragment"
-        android:label="AboutFragment" />
+        android:label="About" />
     <fragment
         android:id="@+id/destination_rules"
         android:name="com.duhdoesk.supertrunfoclone.etc.RulesFragment"
-        android:label="RulesFragment" />
+        android:label="Rules" />
 </navigation>
