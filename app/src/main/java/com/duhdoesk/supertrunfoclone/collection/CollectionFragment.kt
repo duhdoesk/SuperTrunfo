@@ -5,9 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.duhdoesk.supertrunfoclone.R
 
 class CollectionFragment : Fragment() {
+
+    private lateinit var recyclerView: RecyclerView
+
     //Inflating and Returning the View with DataBindingUtil
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -16,5 +21,16 @@ class CollectionFragment : Fragment() {
     ): View? {
         //Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_collection, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recyclerView = view.findViewById(R.id.collectionRecyclerView)
+
+        recyclerView.apply{
+            layoutManager = LinearLayoutManager(activity)
+            adapter = CollectionAdapter()
+        }
     }
 }
