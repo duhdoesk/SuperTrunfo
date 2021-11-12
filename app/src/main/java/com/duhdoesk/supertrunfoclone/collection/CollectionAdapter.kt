@@ -12,7 +12,25 @@ import com.duhdoesk.supertrunfoclone.R
 class CollectionAdapter() :
     RecyclerView.Adapter<CollectionAdapter.ViewHolder>() {
 
-    private var title = arrayOf("Apresentadores Malucos", "Carros Tunados", "Mães Furiosas")
+    private var title = arrayOf(
+        "Carros Irados",
+        "Caçadores Ferozes",
+        "Barcos Envenenados",
+        "Cartoon Network",
+        "Super Heróis DC",
+        "Atletas Históricos",
+        "Fórmula Truck"
+    )
+
+    private var art = arrayOf(
+        R.drawable.carros_irados_art,
+        R.drawable.cacadores_ferozes_art,
+        R.drawable.barcos_envenenados_art,
+        R.drawable.cartoon_network_art,
+        R.drawable.super_herois_dc,
+        R.drawable.atletas_historicos_art,
+        R.drawable.formula_truck_art
+    )
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var textView: TextView
@@ -40,6 +58,7 @@ class CollectionAdapter() :
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.textView.text = title[position]
+        viewHolder.imageView.setImageResource(art[position])
         //viewHolder.imageView.setImageResource(R.drawable.ic_launcher_foreground)
     }
 

@@ -23,8 +23,8 @@
     <fragment
         android:id="@+id/destination_collection"
         android:name="com.duhdoesk.supertrunfoclone.collection.CollectionFragment"
-        android:label="fragment_collection"
-        tools:layout="@layout/fragment_collection" >
+        android:label="Collections"
+        tools:layout="@layout/fragment_collection">
         <action
             android:id="@+id/action_destination_collection_to_destination_inGame"
             app:destination="@id/destination_inGame" />

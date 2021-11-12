@@ -13,5 +13,5 @@
     <color name="grow_dark_gray">#0e0e0e</color>
     <color name="grow_light_gray">#2f2f2f</color>
     <color name="light_onblack_text">#686868</color>
-    <color name="translucent_gray">#7F8F8F8F</color>
+    <color name="translucent_gray">#998F8F8F</color>
 </resources>
