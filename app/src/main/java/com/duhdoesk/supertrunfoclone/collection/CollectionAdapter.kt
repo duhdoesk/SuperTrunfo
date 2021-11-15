@@ -1,10 +1,14 @@
 package com.duhdoesk.supertrunfoclone.collection
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.duhdoesk.supertrunfoclone.R
 
@@ -35,11 +39,20 @@ class CollectionAdapter() :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var textView: TextView
         var imageView: ImageView
+        var bundle: Bundle
 
         init {
             // Define click listener for the ViewHolder's View.
             textView = view.findViewById(R.id.cardview_text)
             imageView = view.findViewById(R.id.cardview_card)
+            bundle = bundleOf("col" to adapterPosition)
+
+            view.setOnClickListener(
+                Navigation.createNavigateOnClickListener(
+                    R.id.action_destination_collection_to_destination_inGame,
+                    bundle
+                )
+            )
         }
     }
 
@@ -59,7 +72,6 @@ class CollectionAdapter() :
         // contents of the view with that element
         viewHolder.textView.text = title[position]
         viewHolder.imageView.setImageResource(art[position])
-        //viewHolder.imageView.setImageResource(R.drawable.ic_launcher_foreground)
     }
 
     // Return the size of your dataset (invoked by the layout manager)

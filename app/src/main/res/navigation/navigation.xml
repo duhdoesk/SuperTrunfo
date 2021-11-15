@@ -39,6 +39,10 @@
         <action
             android:id="@+id/action_destination_inGame_to_destination_gameOver"
             app:destination="@id/destination_gameOver" />
+        <argument
+            android:name="collection"
+            app:argType="integer"
+            android:defaultValue="0"/>
     </fragment>
     <fragment
         android:id="@+id/destination_gameWon"
