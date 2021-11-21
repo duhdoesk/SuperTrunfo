@@ -13,12 +13,6 @@
         <action
             android:id="@+id/action_destination_title_to_destination_collection"
             app:destination="@id/destination_collection" />
-        <action
-            android:id="@+id/action_destination_title_to_destination_about"
-            app:destination="@id/destination_about" />
-        <action
-            android:id="@+id/action_destination_title_to_destination_rules"
-            app:destination="@id/destination_rules" />
     </fragment>
     <fragment
         android:id="@+id/destination_collection"
@@ -27,7 +21,10 @@
         tools:layout="@layout/fragment_collection">
         <action
             android:id="@+id/action_destination_collection_to_destination_inGame"
-            app:destination="@id/destination_inGame" />
+            app:destination="@id/destination_inGame" >
+            <argument
+                android:name="collection" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/destination_inGame"
@@ -41,8 +38,8 @@
             app:destination="@id/destination_gameOver" />
         <argument
             android:name="collection"
-            app:argType="integer"
-            android:defaultValue="0"/>
+            app:argType="string"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/destination_gameWon"

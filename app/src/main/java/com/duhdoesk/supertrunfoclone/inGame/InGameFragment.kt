@@ -5,16 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.duhdoesk.supertrunfoclone.R
+import androidx.navigation.fragment.navArgs
+import com.duhdoesk.supertrunfoclone.databinding.FragmentInGameBinding
 
 class InGameFragment : Fragment() {
-    //Inflating and Returning the View with DataBindingUtil
+
+    private var _binding: FragmentInGameBinding? = null
+    private val binding get() = _binding!!
+
+    private val args: InGameFragmentArgs by navArgs()
+    private var col: String = "0"
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        //Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_in_game, container, false)
+    ): View {
+        _binding = FragmentInGameBinding.inflate(inflater, container, false)
+        return binding.apply {
+
+            col = args.collection
+            binding.tvYourCards.text = "Your Cards: $col"
+
+        }.root
     }
 }
