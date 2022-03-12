@@ -8,26 +8,23 @@
     <fragment
         android:id="@+id/destination_title"
         android:name="com.duhdoesk.supertrunfoclone.title.TitleFragment"
-        android:label="fragment_title"
+        android:label="Super Trunfo Battle Cards"
         tools:layout="@layout/fragment_title">
         <action
             android:id="@+id/action_destination_title_to_destination_collection"
             app:destination="@id/destination_collection" />
-        <action
-            android:id="@+id/action_destination_title_to_destination_about"
-            app:destination="@id/destination_about" />
-        <action
-            android:id="@+id/action_destination_title_to_destination_rules"
-            app:destination="@id/destination_rules" />
     </fragment>
     <fragment
         android:id="@+id/destination_collection"
         android:name="com.duhdoesk.supertrunfoclone.collection.CollectionFragment"
-        android:label="fragment_collection"
-        tools:layout="@layout/fragment_collection" >
+        android:label="Collections"
+        tools:layout="@layout/fragment_collection">
         <action
             android:id="@+id/action_destination_collection_to_destination_inGame"
-            app:destination="@id/destination_inGame" />
+            app:destination="@id/destination_inGame" >
+            <argument
+                android:name="collection" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/destination_inGame"
@@ -39,6 +36,10 @@
         <action
             android:id="@+id/action_destination_inGame_to_destination_gameOver"
             app:destination="@id/destination_gameOver" />
+        <argument
+            android:name="collection"
+            app:argType="string"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/destination_gameWon"
@@ -60,9 +61,9 @@
     <fragment
         android:id="@+id/destination_about"
         android:name="com.duhdoesk.supertrunfoclone.etc.AboutFragment"
-        android:label="AboutFragment" />
+        android:label="About" />
     <fragment
         android:id="@+id/destination_rules"
         android:name="com.duhdoesk.supertrunfoclone.etc.RulesFragment"
-        android:label="RulesFragment" />
+        android:label="Rules" />
 </navigation>

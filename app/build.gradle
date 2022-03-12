@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -48,4 +51,10 @@ dependencies {
     //Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //About Page
+    implementation 'io.github.medyo:android-about-page:2.0.0'
+
+    //CardView
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
