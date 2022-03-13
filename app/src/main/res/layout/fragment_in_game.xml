@@ -5,14 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/grow_dark_gray">
 
         <ImageView
             android:id="@+id/ivCardArt"
             android:layout_width="0dp"
-            android:layout_height="320dp"
+            android:layout_height="240dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +36,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             android:text="@string/card_name"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,31 +59,31 @@
 
             <RadioButton
                 android:id="@+id/radioOption1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/option1_radio" />
+                android:text="@string/option1_radio"
+                android:textColor="@color/white" />
 
             <RadioButton
                 android:id="@+id/radioOption2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/option2_radio" />
+                android:text="@string/option2_radio"
+                android:textColor="@color/white" />
 
             <RadioButton
                 android:id="@+id/radioOption3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/option3_radio" />
+                android:text="@string/option3_radio"
+                android:textColor="@color/white" />
 
             <RadioButton
                 android:id="@+id/radioOption4"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/option4_radio" />
+                android:text="@string/option4_radio"
+                android:textColor="@color/white" />
         </RadioGroup>
 
         <Button
@@ -85,43 +91,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/grow_yellow"
             android:text="@string/call_button"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/tvYourCards"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
         <TextView
-            android:id="@+id/tvYourCards"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/your_cards"
-            app:layout_constraintBottom_toTopOf="@+id/tvOpponentCards"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonCall"
-            app:layout_constraintVertical_bias="1.0"
-            app:layout_constraintVertical_chainStyle="packed" />
-
-        <TextView
             android:id="@+id/tvOpponentCards"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
             android:text="@string/opponent_cards"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvYourCards"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvYourCards" />
+            app:layout_constraintStart_toEndOf="@+id/tvYourCards" />
+
+        <TextView
+            android:id="@+id/tvYourCards"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/your_cards"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/tvYourCardsNumber"
+            app:layout_constraintEnd_toStartOf="@+id/tvOpponentCards"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tvCardId"
@@ -134,5 +142,35 @@
             app:layout_constraintEnd_toEndOf="@+id/ivCardArt"
             app:layout_constraintTop_toTopOf="@+id/ivCardArt" />
 
+        <TextView
+            android:id="@+id/tvYourCardsNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/number_your_cards"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvOppCardsNumber"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvOppCardsNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/number_opp_cards"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvYourCardsNumber"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvYourCardsNumber" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </FrameLayout>

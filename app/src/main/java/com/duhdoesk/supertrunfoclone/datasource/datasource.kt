@@ -1,5 +1,7 @@
 package com.duhdoesk.supertrunfoclone.datasource
 
+import android.widget.Toast
+import com.duhdoesk.supertrunfoclone.inGame.InGameFragment
 import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Baralho
 import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Carta
 import kotlin.random.Random
@@ -80,6 +82,14 @@ class Datasource {
             }
 
             return deck
+        }
+
+        fun cardBattle(myCardValue: Int, oppCardValue: Int): String {
+            if (myCardValue > oppCardValue) {
+                return "W"
+            } else {
+                return "L"
+            }
         }
     }
 }
