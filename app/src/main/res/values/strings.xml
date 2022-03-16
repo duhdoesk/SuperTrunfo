@@ -29,4 +29,11 @@
     <string name="option3_radio">Option 3</string>
     <string name="option4_radio">Option 4</string>
     <string name="card_id">A1</string>
+    <string name="L">L</string>
+    <string name="W">W</string>
+    <string name="you_lost">Try again homie</string>
+    <string name="you_win">BIG W!</string>
+    <string name="not_now">Not now</string>
+    <string name="lets_doeit">Let\'s do it</string>
+    <string name="play_again">Play again</string>
 </resources>

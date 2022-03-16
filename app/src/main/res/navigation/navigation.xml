@@ -46,6 +46,9 @@
         android:name="com.duhdoesk.supertrunfoclone.ending.GameWonFragment"
         android:label="GameWonFragment" >
         <action
+            android:id="@+id/action_destination_gameWon_to_destination_title"
+            app:destination="@id/destination_title" />
+        <action
             android:id="@+id/action_destination_gameWon_to_destination_collection"
             app:destination="@id/destination_collection" />
     </fragment>
@@ -54,6 +57,9 @@
         android:name="com.duhdoesk.supertrunfoclone.ending.GameOverFragment"
         android:label="fragment_game_over"
         tools:layout="@layout/fragment_game_over" >
+        <action
+            android:id="@+id/action_destination_gameOver_to_destination_title"
+            app:destination="@id/destination_title" />
         <action
             android:id="@+id/action_destination_gameOver_to_destination_collection"
             app:destination="@id/destination_collection" />
