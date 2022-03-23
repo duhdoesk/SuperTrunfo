@@ -19,5 +19,6 @@ class Carta(
     val op1: Int,
     val op2: Int,
     val op3: Int,
-    val op4: Int
+    val op4: Int,
+    val trunfo: Boolean
 )

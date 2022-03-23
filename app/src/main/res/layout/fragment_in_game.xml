@@ -10,167 +10,187 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/grow_dark_gray">
-
-        <ImageView
-            android:id="@+id/ivCardArt"
-            android:layout_width="0dp"
-            android:layout_height="240dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside"
-            tools:ignore="ImageContrastCheck" />
-
-        <TextView
-            android:id="@+id/tvCardName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/card_name"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivCardArt" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCardName">
+            android:layout_height="match_parent"
+            android:background="@color/grow_dark_gray">
 
-            <RadioButton
-                android:id="@+id/radioOption1"
+            <ImageView
+                android:id="@+id/ivCardArt"
+                android:layout_width="0dp"
+                android:layout_height="240dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside"
+                tools:ignore="ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/tvCardName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/card_name"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivCardArt" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/option1_radio"
-                android:textColor="@color/white" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCardName">
 
-            <RadioButton
-                android:id="@+id/radioOption2"
-                android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/radioOption1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/option1_radio"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radioOption2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/option2_radio"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radioOption3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/option3_radio"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radioOption4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/option4_radio"
+                    android:textColor="@color/white" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/buttonCall"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/option2_radio"
-                android:textColor="@color/white" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/about_description_dark_text_color"
+                android:text="@string/call_button"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/tvOpponentCards"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btSuperTrunfo" />
 
-            <RadioButton
-                android:id="@+id/radioOption3"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvOpponentCards"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/opponent_cards"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="italic"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvYourCards"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvYourCards" />
+
+            <TextView
+                android:id="@+id/tvYourCards"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/your_cards"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toTopOf="@+id/tvYourCardsNumber"
+                app:layout_constraintEnd_toStartOf="@+id/tvOpponentCards"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvCardId"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/option3_radio"
-                android:textColor="@color/white" />
+                android:layout_marginEnd="8dp"
+                android:text="@string/card_id"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/ivCardArt"
+                app:layout_constraintTop_toTopOf="@+id/ivCardArt" />
 
-            <RadioButton
-                android:id="@+id/radioOption4"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvYourCardsNumber"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/option4_radio"
-                android:textColor="@color/white" />
-        </RadioGroup>
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/number_your_cards"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvOppCardsNumber"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/buttonCall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/grow_yellow"
-            android:text="@string/call_button"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/tvYourCards"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+            <TextView
+                android:id="@+id/tvOppCardsNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/number_opp_cards"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvYourCardsNumber"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvYourCardsNumber" />
 
-        <TextView
-            android:id="@+id/tvOpponentCards"
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/opponent_cards"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textStyle="italic"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tvYourCards"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tvYourCards" />
+            <Button
+                android:id="@+id/btSuperTrunfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/grow_yellow"
+                android:text="@string/super_trunfo"
+                android:textColor="@color/black"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/buttonCall"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_chainStyle="packed" />
 
-        <TextView
-            android:id="@+id/tvYourCards"
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/your_cards"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/tvYourCardsNumber"
-            app:layout_constraintEnd_toStartOf="@+id/tvOpponentCards"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tvCardId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/card_id"
-            android:textSize="48sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/ivCardArt"
-            app:layout_constraintTop_toTopOf="@+id/ivCardArt" />
-
-        <TextView
-            android:id="@+id/tvYourCardsNumber"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/number_your_cards"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvOppCardsNumber"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tvOppCardsNumber"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="@string/number_opp_cards"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tvYourCardsNumber"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tvYourCardsNumber" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </FrameLayout>

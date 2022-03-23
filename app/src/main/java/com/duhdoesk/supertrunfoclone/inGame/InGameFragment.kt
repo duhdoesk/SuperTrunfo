@@ -2,6 +2,7 @@ package com.duhdoesk.supertrunfoclone.inGame
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.duhdoesk.supertrunfoclone.databinding.FragmentInGameBinding
 import com.duhdoesk.supertrunfoclone.datasource.Datasource
 import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Baralho
 import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Carta
+import com.google.android.material.snackbar.Snackbar
 
 class InGameFragment : Fragment() {
 
@@ -33,6 +35,8 @@ class InGameFragment : Fragment() {
     private var myDeckSize: Int = 0
     private var oppDeckSize: Int = 0
 
+    private var buttonST: Button? = null
+
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +46,7 @@ class InGameFragment : Fragment() {
         _binding = FragmentInGameBinding.inflate(inflater, container, false)
         return binding.apply {
 
+            buttonST = binding.btSuperTrunfo
             baralho = Datasource.getDeck(args.collection.toInt())
             myCards = Datasource.splitCards(baralho!!, "me")?.toMutableList()
             oppCards = Datasource.splitCards(baralho!!, "opp")?.toMutableList()
@@ -72,17 +77,26 @@ class InGameFragment : Fragment() {
                 }
 
                 passTheCard(winner)
-
-                myDeckSize = myCards?.size!!
-                oppDeckSize = oppCards?.size!!
-
-                when {
-                    oppDeckSize == 0 -> findNavController().navigate(InGameFragmentDirections.actionDestinationInGameToDestinationGameWon())
-                    myDeckSize == 0 -> findNavController().navigate(InGameFragmentDirections.actionDestinationInGameToDestinationGameOver())
-                    else -> refreshViews()
-                }
+                checkGameState()
             }
         })
+
+        buttonST?.setOnClickListener(View.OnClickListener {
+            if (Datasource.superTrunfo(oppCard!!.cardId)) passTheCard("CPU") else passTheCard("Player")
+            Snackbar.make(view, "CPU card id: ${oppCard!!.cardId}", Snackbar.LENGTH_SHORT).show()
+            checkGameState()
+        })
+    }
+
+    private fun checkGameState() {
+        myDeckSize = myCards?.size!!
+        oppDeckSize = oppCards?.size!!
+
+        when {
+            oppDeckSize == 0 -> findNavController().navigate(InGameFragmentDirections.actionDestinationInGameToDestinationGameWon())
+            myDeckSize == 0 -> findNavController().navigate(InGameFragmentDirections.actionDestinationInGameToDestinationGameOver())
+            else -> refreshViews()
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -103,18 +117,20 @@ class InGameFragment : Fragment() {
         binding.radioOption4.text = "${baralho?.op4Text}: ${myCard?.op4.toString()} ${baralho?.op4Unit}"
 
         binding.radioGroup.clearCheck()
+
+        if (myCard?.cardId == "A1") buttonST!!.visibility = View.VISIBLE else buttonST!!.visibility = View.GONE
     }
 
     private fun passTheCard(winner: String) {
         when (winner) {
-            "W" -> {
+            "Player" -> {
                 Toast.makeText(context, "You got it!", Toast.LENGTH_SHORT).show()
                 myCards?.add(oppCard!!)
                 myCards?.add(myCard!!)
                 myCards?.removeFirst()
                 oppCards?.removeFirst()
             }
-            "L" -> {
+            "CPU" -> {
                 Toast.makeText(context, "Loooooooser", Toast.LENGTH_SHORT).show()
                 oppCards?.add(oppCard!!)
                 oppCards?.add(myCard!!)
