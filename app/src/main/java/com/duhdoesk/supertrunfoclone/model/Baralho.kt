@@ -15,10 +15,11 @@ class Baralho(
 
 class Carta(
     val cardId: String,
+    val cardImg: String,
     val nome: String,
     val op1: Int,
     val op2: Int,
     val op3: Int,
-    val op4: Int,
-    val trunfo: Boolean
+    val op4: Double,
+    val trunfo: Boolean = false
 )
