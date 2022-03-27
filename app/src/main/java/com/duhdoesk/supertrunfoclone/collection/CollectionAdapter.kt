@@ -37,15 +37,12 @@ class CollectionAdapter() :
     )
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var textView: TextView
-        var imageView: ImageView
-        var bundle: Bundle
+        var textView: TextView = view.findViewById(R.id.cardview_text)
+        var imageView: ImageView = view.findViewById(R.id.cardview_card)
+        var bundle: Bundle = bundleOf("col" to adapterPosition)
 
         init {
             // Define click listener for the ViewHolder's View.
-            textView = view.findViewById(R.id.cardview_text)
-            imageView = view.findViewById(R.id.cardview_card)
-            bundle = bundleOf("col" to adapterPosition)
 
             view.setOnClickListener(
                 Navigation.createNavigateOnClickListener(

@@ -17,19 +17,18 @@
     <fragment
         android:id="@+id/destination_collection"
         android:name="com.duhdoesk.supertrunfoclone.collection.CollectionFragment"
-        android:label="Collections"
+        android:label="Coleções"
         tools:layout="@layout/fragment_collection">
         <action
             android:id="@+id/action_destination_collection_to_destination_inGame"
-            app:destination="@id/destination_inGame" >
-            <argument
-                android:name="collection" />
+            app:destination="@id/destination_inGame">
+            <argument android:name="collection" />
         </action>
     </fragment>
     <fragment
         android:id="@+id/destination_inGame"
         android:name="com.duhdoesk.supertrunfoclone.inGame.InGameFragment"
-        android:label="InGameFragment" >
+        android:label="Super Trunfo Battle Cards">
         <action
             android:id="@+id/action_destination_inGame_to_destination_gameWon"
             app:destination="@id/destination_gameWon" />
@@ -38,13 +37,16 @@
             app:destination="@id/destination_gameOver" />
         <argument
             android:name="collection"
-            app:argType="string"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/destination_gameWon"
         android:name="com.duhdoesk.supertrunfoclone.ending.GameWonFragment"
-        android:label="GameWonFragment" >
+        android:label="Vitória">
+        <action
+            android:id="@+id/action_destination_gameWon_to_destination_title"
+            app:destination="@id/destination_title" />
         <action
             android:id="@+id/action_destination_gameWon_to_destination_collection"
             app:destination="@id/destination_collection" />
@@ -52,8 +54,11 @@
     <fragment
         android:id="@+id/destination_gameOver"
         android:name="com.duhdoesk.supertrunfoclone.ending.GameOverFragment"
-        android:label="fragment_game_over"
-        tools:layout="@layout/fragment_game_over" >
+        android:label="Derrota"
+        tools:layout="@layout/fragment_game_over">
+        <action
+            android:id="@+id/action_destination_gameOver_to_destination_title"
+            app:destination="@id/destination_title" />
         <action
             android:id="@+id/action_destination_gameOver_to_destination_collection"
             app:destination="@id/destination_collection" />

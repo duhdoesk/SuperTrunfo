@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/grow_dark_gray">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/collectionRecyclerView"
@@ -32,6 +33,7 @@
             android:layout_marginEnd="16dp"
             android:text="@string/collection_pick"
             android:textSize="18sp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

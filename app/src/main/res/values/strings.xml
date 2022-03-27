@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Super Trunfo Clone</string>
+    <string name="app_name">Super Trunfo</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_title_fragment">Hello title fragment</string>
-    <string name="title_description">The original Grow\'s epic cards game, now on Android!</string>
-    <string name="play_button">Play Now</string>
+    <string name="title_description">O jogo épico de cartas da Grow, agora no seu dispositivo Android!</string>
+    <string name="play_button">Jogar</string>
     <string name="made_by">
-        This app was made with only studying purposes.\n
-        Check out the about section for more info.
+        Este aplicativo foi desenvolvido com propósitos estudantis.\n
+        Veja a seção about para mais informações.
     </string>
     <string name="about_description">
         Hi!\n
@@ -15,16 +15,26 @@
         decided to code it for practice.\n\n
         Hope you enjoy it and, if you do, don\'t hesitate on contacting me using one of the channels below.
     </string>
-    <string name="collection_pick">Pick a Colletion:</string>
-    <string name="call_button">Call</string>
-    <string name="card_name">Card Name</string>
-    <string name="opponent_cards">Opponent Cards: 0</string>
-    <string name="your_cards">Your Cards: 0</string>
-    <string name="your_stat">You</string>
-    <string name="opponent_stat">Opponent</string>
-    <string name="option1_radio">Option 1</string>
-    <string name="option2_radio">Option 2</string>
-    <string name="option3_radio">Option 3</string>
-    <string name="option4_radio">Option 4</string>
+    <string name="collection_pick">Escolha uma coleção:</string>
+    <string name="call_button">Chamar</string>
+    <string name="card_name">Nome do card</string>
+    <string name="opponent_cards">Cards do oponente</string>
+    <string name="your_cards">Seus cards</string>
+    <string name="number_your_cards">0</string>
+    <string name="number_opp_cards">0</string>
+    <string name="your_stat">Você</string>
+    <string name="opponent_stat">Oponente</string>
+    <string name="option1_radio">Opção 1</string>
+    <string name="option2_radio">Opção 2</string>
+    <string name="option3_radio">Opção 3</string>
+    <string name="option4_radio">Opção 4</string>
     <string name="card_id">A1</string>
+    <string name="L">L</string>
+    <string name="W">W</string>
+    <string name="you_lost">Tente novamente!</string>
+    <string name="you_win">Vitória!</string>
+    <string name="not_now">Agora não</string>
+    <string name="lets_doeit">Vamos lá</string>
+    <string name="play_again">Jogar novamente</string>
+    <string name="super_trunfo">Super Trunfo</string>
 </resources>

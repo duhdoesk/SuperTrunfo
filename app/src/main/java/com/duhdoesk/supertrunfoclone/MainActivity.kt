@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
@@ -35,6 +37,16 @@ class MainActivity : AppCompatActivity() {
         //set AppBar
         val appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+
+        navController.addOnDestinationChangedListener(listener = NavController.OnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.destination_gameOver || destination.id == R.id.destination_gameWon) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            } else {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            }
+        })
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
