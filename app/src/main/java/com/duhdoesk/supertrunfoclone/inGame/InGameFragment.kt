@@ -2,20 +2,15 @@ package com.duhdoesk.supertrunfoclone.inGame
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.children
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import coil.ImageLoader
 import coil.load
 import coil.request.ErrorResult
 import coil.request.ImageRequest
@@ -53,7 +48,7 @@ class InGameFragment : Fragment() {
         return binding.apply {
 
             buttonST = binding.btSuperTrunfo
-            baralho = Datasource.getDeck(args.collection.toInt())
+            baralho = Datasource.getDeck(requireContext(), args.collection.toInt())
             myCards = Datasource.splitCards(baralho!!, "me")?.toMutableList()
             oppCards = Datasource.splitCards(baralho!!, "opp")?.toMutableList()
             myDeckSize = myCards?.size!!
