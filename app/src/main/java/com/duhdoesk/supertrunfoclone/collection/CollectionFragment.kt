@@ -33,7 +33,7 @@ class CollectionFragment : Fragment() {
 
         recyclerView.apply{
             layoutManager = LinearLayoutManager(activity)
-            adapter = CollectionAdapter()
+            adapter = CollectionAdapter(context)
         }
 
         recyclerView.addOnItemClickListener(object : OnItemClickListener {
