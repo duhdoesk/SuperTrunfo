@@ -1,29 +1,19 @@
-package com.duhdoesk.supertrunfoclone.datasource
+package com.duhdoesk.supertrunfoclone.ViewModel
 
-import android.app.Application
 import android.content.Context
-import android.content.res.AssetManager
-import android.view.View
-import com.duhdoesk.supertrunfoclone.MainActivity
-import com.duhdoesk.supertrunfoclone.R
-import com.duhdoesk.supertrunfoclone.inGame.InGameFragment
 import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Baralho
 import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Carta
-import java.io.IOException
-import java.io.InputStream
-import java.security.AccessController.getContext
+import com.duhdoesk.supertrunfoclone.Model.JsonFileReader
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
-class Datasource {
+class InGameViewModel(private val jsonFileReader: JsonFileReader) {
 
     companion object {
-
-        fun getListOfDecks(context: Context): List<Baralho> {
-            val decks: List<Baralho> = InGameDataSource(JsonFileReader(context)).loadDecks()
-            return decks
-        }
+        private const val DECKS_JSON_FILE_NAME = "decks.json"
 
         fun getDeck(context: Context, index: Int = 0): Baralho {
-            val decks: List<Baralho> = InGameDataSource(JsonFileReader(context)).loadDecks()
+            val decks: List<Baralho> = InGameViewModel(JsonFileReader(context)).loadDecks()
             val deck: Baralho = decks[index]
 
             deck.cartas = deck.cartas.shuffled()
@@ -54,5 +44,14 @@ class Datasource {
             val pattern = Regex("A")
             return pattern.containsMatchIn(cardId)
         }
+    }
+
+    fun loadDecks(): List<Baralho> {
+        val rawJson = jsonFileReader.readJsonAsset(DECKS_JSON_FILE_NAME)
+            ?: return emptyList()
+
+        val jsonReader = Json { isLenient = true }
+
+        return jsonReader.decodeFromString(rawJson)
     }
 }

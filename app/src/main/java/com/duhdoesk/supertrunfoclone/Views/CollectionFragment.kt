@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.collection
+package com.duhdoesk.supertrunfoclone.Views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.duhdoesk.supertrunfoclone.Adapters.CollectionAdapter
 import com.duhdoesk.supertrunfoclone.databinding.FragmentCollectionBinding
 
 class CollectionFragment : Fragment() {

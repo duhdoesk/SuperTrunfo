@@ -1,7 +1,11 @@
-package com.duhdoesk.supertrunfoclone.datasource
+package com.duhdoesk.supertrunfoclone.Model
 
 import android.content.Context
 import android.util.Log
+import com.duhdoesk.supertrunfoclone.ViewModel.InGameViewModel
+import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Baralho
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 
 class JsonFileReader(private val context: Context) {
 
@@ -13,5 +17,4 @@ class JsonFileReader(private val context: Context) {
             null
         }
     }
-
 }

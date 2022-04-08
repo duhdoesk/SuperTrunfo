@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.etc
+package com.duhdoesk.supertrunfoclone.Views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

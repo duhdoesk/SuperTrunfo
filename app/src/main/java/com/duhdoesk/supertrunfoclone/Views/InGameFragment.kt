@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.inGame
+package com.duhdoesk.supertrunfoclone.Views
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -16,7 +16,7 @@ import coil.request.ErrorResult
 import coil.request.ImageRequest
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.databinding.FragmentInGameBinding
-import com.duhdoesk.supertrunfoclone.datasource.Datasource
+import com.duhdoesk.supertrunfoclone.ViewModel.InGameViewModel
 import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Baralho
 import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Carta
 import com.google.android.material.snackbar.Snackbar
@@ -48,9 +48,9 @@ class InGameFragment : Fragment() {
         return binding.apply {
 
             buttonST = binding.btSuperTrunfo
-            baralho = Datasource.getDeck(requireContext(), args.collection.toInt())
-            myCards = Datasource.splitCards(baralho!!, "me")?.toMutableList()
-            oppCards = Datasource.splitCards(baralho!!, "opp")?.toMutableList()
+            baralho = InGameViewModel.getDeck(requireContext(), args.collection.toInt())
+            myCards = InGameViewModel.splitCards(baralho!!, "me")?.toMutableList()
+            oppCards = InGameViewModel.splitCards(baralho!!, "opp")?.toMutableList()
             myDeckSize = myCards?.size!!
             oppDeckSize = oppCards?.size!!
 
@@ -72,10 +72,10 @@ class InGameFragment : Fragment() {
                 Toast.makeText(context, "Please, select an attribute to call", Toast.LENGTH_SHORT).show()
             } else {
                 winner = when (resources.getResourceEntryName(binding.radioGroup.checkedRadioButtonId)) {
-                    "radioOption1" -> Datasource.cardBattle(myCard!!.op1, oppCard!!.op1)
-                    "radioOption2" -> Datasource.cardBattle(myCard!!.op2, oppCard!!.op2)
-                    "radioOption3" -> Datasource.cardBattle(myCard!!.op3, oppCard!!.op3)
-                    "radioOption4" -> Datasource.cardBattle(myCard!!.op4, oppCard!!.op4)
+                    "radioOption1" -> InGameViewModel.cardBattle(myCard!!.op1, oppCard!!.op1)
+                    "radioOption2" -> InGameViewModel.cardBattle(myCard!!.op2, oppCard!!.op2)
+                    "radioOption3" -> InGameViewModel.cardBattle(myCard!!.op3, oppCard!!.op3)
+                    "radioOption4" -> InGameViewModel.cardBattle(myCard!!.op4, oppCard!!.op4)
                     else -> ""
                 }
 
@@ -85,7 +85,7 @@ class InGameFragment : Fragment() {
         })
 
         buttonST?.setOnClickListener(View.OnClickListener {
-            if (Datasource.superTrunfo(oppCard!!.cardId)) passTheCard("CPU") else passTheCard("Player")
+            if (InGameViewModel.superTrunfo(oppCard!!.cardId)) passTheCard("CPU") else passTheCard("Player")
             Snackbar.make(view, "CPU card id: ${oppCard!!.cardId}", Snackbar.LENGTH_SHORT).show()
             checkGameState()
         })

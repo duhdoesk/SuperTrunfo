@@ -1,11 +1,6 @@
 package com.duhdoesk.supertrunfoclone.inGame.inGameHelper
 
-import android.graphics.drawable.Drawable
 import kotlinx.serialization.Serializable
-
-class DeckCollection(
-    var decks: List<Baralho>
-)
 
 @Serializable
 data class Baralho(

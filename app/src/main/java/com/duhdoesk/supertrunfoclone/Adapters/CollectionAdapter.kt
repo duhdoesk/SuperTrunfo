@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.collection
+package com.duhdoesk.supertrunfoclone.Adapters
 
 import android.content.Context
 import android.os.Bundle
@@ -12,14 +12,15 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.duhdoesk.supertrunfoclone.R
-import com.duhdoesk.supertrunfoclone.datasource.Datasource
+import com.duhdoesk.supertrunfoclone.ViewModel.CollectionViewModel
+import com.duhdoesk.supertrunfoclone.ViewModel.InGameViewModel
 import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Baralho
 
 
 class CollectionAdapter(context: Context) :
     RecyclerView.Adapter<CollectionAdapter.ViewHolder>() {
 
-    private var listOfDecks: List<Baralho> = Datasource.getListOfDecks(context)
+    private var listOfDecks: List<Baralho> = CollectionViewModel.getListOfDecks(context)
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var textView: TextView = view.findViewById(R.id.cardview_text)
