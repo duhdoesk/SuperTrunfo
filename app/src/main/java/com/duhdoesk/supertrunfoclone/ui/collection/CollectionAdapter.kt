@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.collection
+package com.duhdoesk.supertrunfoclone.ui.collection
 
 import android.content.Context
 import android.os.Bundle
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.datasource.Datasource
-import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Baralho
+import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Baralho
 
 
 class CollectionAdapter(context: Context) :

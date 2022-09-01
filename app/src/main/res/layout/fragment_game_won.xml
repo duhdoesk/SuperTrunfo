@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grow_dark_gray"
-    tools:context=".ending.GameWonFragment">
+    tools:context=".ui.ending.GameWonFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

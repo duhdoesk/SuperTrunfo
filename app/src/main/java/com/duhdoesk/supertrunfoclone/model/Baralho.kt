@@ -1,6 +1,5 @@
-package com.duhdoesk.supertrunfoclone.inGame.inGameHelper
+package com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper
 
-import android.graphics.drawable.Drawable
 import kotlinx.serialization.Serializable
 
 class DeckCollection(

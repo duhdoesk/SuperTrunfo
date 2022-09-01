@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.datasource
+package com.duhdoesk.supertrunfoclone.util
 
 import android.content.Context
 import android.util.Log

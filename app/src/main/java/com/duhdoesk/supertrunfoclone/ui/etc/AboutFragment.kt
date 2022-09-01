@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.etc
+package com.duhdoesk.supertrunfoclone.ui.etc
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.duhdoesk.supertrunfoclone.R
 import mehdi.sakout.aboutpage.AboutPage
-import java.util.*
 
 class AboutFragment : Fragment() {
     //Inflating and Returning the View with DataBindingUtil

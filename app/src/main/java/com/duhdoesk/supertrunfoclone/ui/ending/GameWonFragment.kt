@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.ending
+package com.duhdoesk.supertrunfoclone.ui.ending
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
-import com.duhdoesk.supertrunfoclone.R
-import com.duhdoesk.supertrunfoclone.databinding.FragmentGameOverBinding
 import com.duhdoesk.supertrunfoclone.databinding.FragmentGameWonBinding
 
 class GameWonFragment : Fragment() {

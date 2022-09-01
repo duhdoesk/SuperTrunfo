@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.inGame
+package com.duhdoesk.supertrunfoclone.ui.inGame
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -17,8 +17,8 @@ import coil.request.ImageRequest
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.databinding.FragmentInGameBinding
 import com.duhdoesk.supertrunfoclone.datasource.Datasource
-import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Baralho
-import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Carta
+import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Baralho
+import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Carta
 import com.google.android.material.snackbar.Snackbar
 
 class InGameFragment : Fragment() {

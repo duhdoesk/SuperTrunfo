@@ -1,17 +1,10 @@
 package com.duhdoesk.supertrunfoclone.datasource
 
-import android.app.Application
 import android.content.Context
-import android.content.res.AssetManager
-import android.view.View
-import com.duhdoesk.supertrunfoclone.MainActivity
-import com.duhdoesk.supertrunfoclone.R
-import com.duhdoesk.supertrunfoclone.inGame.InGameFragment
-import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Baralho
-import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Carta
-import java.io.IOException
-import java.io.InputStream
-import java.security.AccessController.getContext
+import com.duhdoesk.supertrunfoclone.ui.inGame.InGameDataSource
+import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Baralho
+import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Carta
+import com.duhdoesk.supertrunfoclone.util.JsonFileReader
 
 class Datasource {
 

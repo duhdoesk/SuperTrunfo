@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.title
+package com.duhdoesk.supertrunfoclone.ui.title
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import com.duhdoesk.supertrunfoclone.R
-import com.duhdoesk.supertrunfoclone.databinding.FragmentInGameBinding
 import com.duhdoesk.supertrunfoclone.databinding.FragmentTitleBinding
 
 class TitleFragment : Fragment() {

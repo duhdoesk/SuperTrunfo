@@ -1,6 +1,7 @@
-package com.duhdoesk.supertrunfoclone.datasource
+package com.duhdoesk.supertrunfoclone.ui.inGame
 
-import com.duhdoesk.supertrunfoclone.inGame.inGameHelper.Baralho
+import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Baralho
+import com.duhdoesk.supertrunfoclone.util.JsonFileReader
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 

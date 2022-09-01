@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.collection
+package com.duhdoesk.supertrunfoclone.ui.collection
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
