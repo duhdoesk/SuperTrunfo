@@ -63,7 +63,7 @@ class InGameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val buttonCall: Button = binding.buttonCall
-        var winner: String = ""
+        var winner: String
 
         (activity as AppCompatActivity).supportActionBar?.title = "Super Trunfo ${deck?.name}"
 
@@ -112,7 +112,7 @@ class InGameFragment : Fragment() {
         oppCard = oppCards?.get(0)
 
         binding.ivCardArt.load(myCard!!.img) {
-            listener(onError = { request: ImageRequest, result: ErrorResult ->
+            listener(onError = { _: ImageRequest, _: ErrorResult ->
                 binding.ivCardArt.setImageResource(R.drawable.ic_launcher_background)
             })
         }
