@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.datasource.Datasource
-import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Baralho
+import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Deck
 
 
 class CollectionAdapter(context: Context) :
     RecyclerView.Adapter<CollectionAdapter.ViewHolder>() {
 
-    private var listOfDecks: List<Baralho> = Datasource.getListOfDecks(context)
+    private var listOfDecks: List<Deck> = Datasource.getListOfDecks(context)
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var textView: TextView = view.findViewById(R.id.cardview_text)
@@ -52,8 +52,8 @@ class CollectionAdapter(context: Context) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.textView.text = listOfDecks[position].nome
-        viewHolder.imageView.load(listOfDecks[position].cover)
+        viewHolder.textView.text = listOfDecks[position].name
+        viewHolder.imageView.load(listOfDecks[position].img)
         //viewHolder.imageView.setImageResource(listOfDecks[position].cover)
     }
 

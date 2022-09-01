@@ -17,8 +17,8 @@ import coil.request.ImageRequest
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.databinding.FragmentInGameBinding
 import com.duhdoesk.supertrunfoclone.datasource.Datasource
-import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Baralho
-import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Carta
+import com.duhdoesk.supertrunfoclone.model.Card
+import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Deck
 import com.google.android.material.snackbar.Snackbar
 
 class InGameFragment : Fragment() {
@@ -27,11 +27,11 @@ class InGameFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: InGameFragmentArgs by navArgs()
 
-    private var baralho: Baralho? = null
-    private var myCards: MutableList<Carta>? = null
-    private var oppCards: MutableList<Carta>? = null
-    private var myCard: Carta? = null
-    private var oppCard: Carta? = null
+    private var deck: Deck? = null
+    private var myCards: MutableList<Card>? = null
+    private var oppCards: MutableList<Card>? = null
+    private var myCard: Card? = null
+    private var oppCard: Card? = null
 
     private var myDeckSize: Int = 0
     private var oppDeckSize: Int = 0
@@ -48,9 +48,9 @@ class InGameFragment : Fragment() {
         return binding.apply {
 
             buttonST = binding.btSuperTrunfo
-            baralho = Datasource.getDeck(requireContext(), args.collection.toInt())
-            myCards = Datasource.splitCards(baralho!!, "me")?.toMutableList()
-            oppCards = Datasource.splitCards(baralho!!, "opp")?.toMutableList()
+            deck = Datasource.getDeck(requireContext(), args.collection.toInt())
+            myCards = Datasource.splitCards(deck!!, "me")?.toMutableList()
+            oppCards = Datasource.splitCards(deck!!, "opp")?.toMutableList()
             myDeckSize = myCards?.size!!
             oppDeckSize = oppCards?.size!!
 
@@ -65,17 +65,17 @@ class InGameFragment : Fragment() {
         val buttonCall: Button = binding.buttonCall
         var winner: String = ""
 
-        (activity as AppCompatActivity).supportActionBar?.title = "Super Trunfo ${baralho?.nome}"
+        (activity as AppCompatActivity).supportActionBar?.title = "Super Trunfo ${deck?.name}"
 
         buttonCall.setOnClickListener(View.OnClickListener {
             if (binding.radioGroup.checkedRadioButtonId == -1) {
                 Toast.makeText(context, "Please, select an attribute to call", Toast.LENGTH_SHORT).show()
             } else {
                 winner = when (resources.getResourceEntryName(binding.radioGroup.checkedRadioButtonId)) {
-                    "radioOption1" -> Datasource.cardBattle(myCard!!.op1, oppCard!!.op1)
-                    "radioOption2" -> Datasource.cardBattle(myCard!!.op2, oppCard!!.op2)
-                    "radioOption3" -> Datasource.cardBattle(myCard!!.op3, oppCard!!.op3)
-                    "radioOption4" -> Datasource.cardBattle(myCard!!.op4, oppCard!!.op4)
+                    "radioOption1" -> Datasource.cardBattle(myCard!!.att1, oppCard!!.att1)
+                    "radioOption2" -> Datasource.cardBattle(myCard!!.att2, oppCard!!.att2)
+                    "radioOption3" -> Datasource.cardBattle(myCard!!.att3, oppCard!!.att3)
+                    "radioOption4" -> Datasource.cardBattle(myCard!!.att4, oppCard!!.att4)
                     else -> ""
                 }
 
@@ -85,8 +85,8 @@ class InGameFragment : Fragment() {
         })
 
         buttonST?.setOnClickListener(View.OnClickListener {
-            if (Datasource.superTrunfo(oppCard!!.cardId)) passTheCard("CPU") else passTheCard("Player")
-            Snackbar.make(view, "CPU card id: ${oppCard!!.cardId}", Snackbar.LENGTH_SHORT).show()
+            if (Datasource.superTrunfo(oppCard!!.id)) passTheCard("CPU") else passTheCard("Player")
+            Snackbar.make(view, "CPU card id: ${oppCard!!.id}", Snackbar.LENGTH_SHORT).show()
             checkGameState()
         })
     }
@@ -111,24 +111,24 @@ class InGameFragment : Fragment() {
         myCard = myCards?.get(0)
         oppCard = oppCards?.get(0)
 
-        binding.ivCardArt.load(myCard!!.cardImg) {
+        binding.ivCardArt.load(myCard!!.img) {
             listener(onError = { request: ImageRequest, result: ErrorResult ->
                 binding.ivCardArt.setImageResource(R.drawable.ic_launcher_background)
             })
         }
 
-        binding.tvCardName.text = myCard?.nome
-        binding.tvCardId.text = myCard?.cardId
+        binding.tvCardName.text = myCard?.name
+        binding.tvCardId.text = myCard?.id
 
-        binding.radioOption1.text = "${baralho?.op1Text}"
-        binding.radioOption2.text = "${baralho?.op2Text}"
-        binding.radioOption3.text = "${baralho?.op3Text}"
-        binding.radioOption4.text = "${baralho?.op4Text}"
+        binding.radioOption1.text = "${deck?.att1Label}"
+        binding.radioOption2.text = "${deck?.att2Label}"
+        binding.radioOption3.text = "${deck?.att3Label}"
+        binding.radioOption4.text = "${deck?.att4Label}"
 
-        binding.tvOption1.text = "${myCard?.op1.toString()} ${baralho?.op1Unit}"
-        binding.tvOption2.text = "${myCard?.op2.toString()} ${baralho?.op2Unit}"
-        binding.tvOption3.text = "${myCard?.op3.toString()} ${baralho?.op3Unit}"
-        binding.tvOption4.text = "${myCard?.op4.toString()} ${baralho?.op4Unit}"
+        binding.tvOption1.text = "${myCard?.att1.toString()} ${deck?.att1Unit}"
+        binding.tvOption2.text = "${myCard?.att2.toString()} ${deck?.att2Unit}"
+        binding.tvOption3.text = "${myCard?.att3.toString()} ${deck?.att3Unit}"
+        binding.tvOption4.text = "${myCard?.att4.toString()} ${deck?.att4Unit}"
 
         binding.radioGroup.clearCheck()
 
