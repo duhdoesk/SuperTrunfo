@@ -9,7 +9,9 @@ import android.widget.Button
 import androidx.navigation.Navigation
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.databinding.FragmentTitleBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 class TitleFragment : Fragment() {
 
     private var _binding: FragmentTitleBinding? = null
@@ -22,7 +24,7 @@ class TitleFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentTitleBinding.inflate(inflater, container, false)
         btPlay = binding.buttonPlayNow
@@ -34,13 +36,6 @@ class TitleFragment : Fragment() {
         )
 
         return binding.root
-
-        //Inflate the layout for this fragment
-        /*val view = inflater.inflate(R.layout.fragment_title, container, false)
-        buttonPlay = view.findViewById(R.id.buttonPlayNow)
-        buttonPlay.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_destination_title_to_destination_collection, null))
-        return view*/
     }
 
 }

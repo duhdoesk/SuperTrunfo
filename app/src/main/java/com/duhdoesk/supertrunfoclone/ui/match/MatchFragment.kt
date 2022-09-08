@@ -16,7 +16,7 @@ import coil.request.ErrorResult
 import coil.request.ImageRequest
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.databinding.FragmentInGameBinding
-import com.duhdoesk.supertrunfoclone.datasource.Datasource
+import com.duhdoesk.supertrunfoclone.datasource.DeckLocalDataSource
 import com.duhdoesk.supertrunfoclone.model.Card
 import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Deck
 import com.google.android.material.snackbar.Snackbar
@@ -48,9 +48,9 @@ class InGameFragment : Fragment() {
         return binding.apply {
 
             buttonST = binding.btSuperTrunfo
-            deck = Datasource.getDeck(requireContext(), args.collection.toInt())
-            myCards = Datasource.splitCards(deck!!, "me")?.toMutableList()
-            oppCards = Datasource.splitCards(deck!!, "opp")?.toMutableList()
+//            deck = DeckLocalDataSource.getDeck(requireContext(), args.collection.toInt())
+//            myCards = DeckLocalDataSource.splitCards(deck!!, "me")?.toMutableList()
+//            oppCards = DeckLocalDataSource.splitCards(deck!!, "opp")?.toMutableList()
             myDeckSize = myCards?.size!!
             oppDeckSize = oppCards?.size!!
 
@@ -72,10 +72,10 @@ class InGameFragment : Fragment() {
                 Toast.makeText(context, "Please, select an attribute to call", Toast.LENGTH_SHORT).show()
             } else {
                 winner = when (resources.getResourceEntryName(binding.radioGroup.checkedRadioButtonId)) {
-                    "radioOption1" -> Datasource.cardBattle(myCard!!.att1, oppCard!!.att1)
-                    "radioOption2" -> Datasource.cardBattle(myCard!!.att2, oppCard!!.att2)
-                    "radioOption3" -> Datasource.cardBattle(myCard!!.att3, oppCard!!.att3)
-                    "radioOption4" -> Datasource.cardBattle(myCard!!.att4, oppCard!!.att4)
+//                    "radioOption1" -> DeckLocalDataSource.cardBattle(myCard!!.att1, oppCard!!.att1)
+//                    "radioOption2" -> DeckLocalDataSource.cardBattle(myCard!!.att2, oppCard!!.att2)
+//                    "radioOption3" -> DeckLocalDataSource.cardBattle(myCard!!.att3, oppCard!!.att3)
+//                    "radioOption4" -> DeckLocalDataSource.cardBattle(myCard!!.att4, oppCard!!.att4)
                     else -> ""
                 }
 
@@ -84,11 +84,11 @@ class InGameFragment : Fragment() {
             }
         })
 
-        buttonST?.setOnClickListener(View.OnClickListener {
-            if (Datasource.superTrunfo(oppCard!!.id)) passTheCard("CPU") else passTheCard("Player")
-            Snackbar.make(view, "CPU card id: ${oppCard!!.id}", Snackbar.LENGTH_SHORT).show()
-            checkGameState()
-        })
+//        buttonST?.setOnClickListener(View.OnClickListener {
+//            if (DeckLocalDataSource.superTrunfo(oppCard!!.id)) passTheCard("CPU") else passTheCard("Player")
+//            Snackbar.make(view, "CPU card id: ${oppCard!!.id}", Snackbar.LENGTH_SHORT).show()
+//            checkGameState()
+//        })
     }
 
     private fun checkGameState() {
