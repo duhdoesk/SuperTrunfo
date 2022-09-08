@@ -1,22 +1,27 @@
 package com.duhdoesk.supertrunfoclone.ui.collection
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.databinding.FragmentCollectionBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-class CollectionFragment : Fragment() {
+@ExperimentalCoroutinesApi
+@AndroidEntryPoint
+class CollectionFragment constructor (private val collectionAdapter: CollectionAdapter)
+    : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private var _binding: FragmentCollectionBinding? = null
     private val binding get() = _binding!!
 
-    //Inflating and Returning the View with DataBindingUtil
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,7 +38,7 @@ class CollectionFragment : Fragment() {
 
         recyclerView.apply{
             layoutManager = LinearLayoutManager(activity)
-            adapter = CollectionAdapter(context)
+            adapter = collectionAdapter
         }
 
         recyclerView.addOnItemClickListener(object : OnItemClickListener {

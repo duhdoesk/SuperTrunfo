@@ -2,7 +2,7 @@
     <string name="app_name">Super Trunfo</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_title_fragment">Hello title fragment</string>
-    <string name="title_description">O jogo épico de cartas da Grow, agora no seu dispositivo Android!</string>
+    <string name="home_fragment_description">O jogo épico de cartas da Grow, agora no seu dispositivo Android!</string>
     <string name="play_button">Jogar</string>
     <string name="made_by">
         Este aplicativo foi desenvolvido com propósitos estudantis.\n
@@ -34,7 +34,7 @@
     <string name="you_lost">Tente novamente!</string>
     <string name="you_win">Vitória!</string>
     <string name="not_now">Agora não</string>
-    <string name="lets_doeit">Vamos lá</string>
+    <string name="lets_doit">Vamos lá</string>
     <string name="play_again">Jogar novamente</string>
     <string name="super_trunfo">Super Trunfo</string>
 </resources>

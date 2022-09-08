@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/destination_title"
-        android:name="com.duhdoesk.supertrunfoclone.ui.title.TitleFragment"
+        android:name="com.duhdoesk.supertrunfoclone.ui.home.HomeFragment"
         android:label="Super Trunfo Battle Cards"
-        tools:layout="@layout/fragment_title">
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_destination_title_to_destination_collection"
             app:destination="@id/destination_collection" />
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/destination_inGame"
-        android:name="com.duhdoesk.supertrunfoclone.ui.inGame.InGameFragment"
+        android:name="com.duhdoesk.supertrunfoclone.ui.match.MatchFragment"
         android:label="Super Trunfo Battle Cards">
         <action
             android:id="@+id/action_destination_inGame_to_destination_gameWon"

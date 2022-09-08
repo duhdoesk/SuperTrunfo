@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.ui.title
+package com.duhdoesk.supertrunfoclone.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
 import com.duhdoesk.supertrunfoclone.R
-import com.duhdoesk.supertrunfoclone.databinding.FragmentTitleBinding
+import com.duhdoesk.supertrunfoclone.databinding.FragmentHomeBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
-class TitleFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private var _binding: FragmentTitleBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     lateinit var btPlay : Button
@@ -26,7 +26,7 @@ class TitleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentTitleBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         btPlay = binding.buttonPlayNow
 
         btPlay.setOnClickListener(

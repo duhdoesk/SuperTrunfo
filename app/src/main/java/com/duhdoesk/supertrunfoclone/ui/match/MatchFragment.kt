@@ -1,175 +1,105 @@
-package com.duhdoesk.supertrunfoclone.ui.inGame
+package com.duhdoesk.supertrunfoclone.ui.match
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import coil.request.ErrorResult
 import coil.request.ImageRequest
 import com.duhdoesk.supertrunfoclone.R
-import com.duhdoesk.supertrunfoclone.databinding.FragmentInGameBinding
-import com.duhdoesk.supertrunfoclone.datasource.DeckLocalDataSource
-import com.duhdoesk.supertrunfoclone.model.Card
-import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Deck
+import com.duhdoesk.supertrunfoclone.databinding.FragmentMatchBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-class InGameFragment : Fragment() {
+@ExperimentalCoroutinesApi
+@AndroidEntryPoint
+class MatchFragment : Fragment() {
 
-    private var _binding: FragmentInGameBinding? = null
-    private val binding get() = _binding!!
-    private val args: InGameFragmentArgs by navArgs()
+    private val vm: MatchViewModel by viewModels()
+    private val args: MatchFragmentArgs by navArgs()
 
-    private var deck: Deck? = null
-    private var myCards: MutableList<Card>? = null
-    private var oppCards: MutableList<Card>? = null
-    private var myCard: Card? = null
-    private var oppCard: Card? = null
+    private lateinit var _binding: FragmentMatchBinding
+    private val binding get() = _binding
 
-    private var myDeckSize: Int = 0
-    private var oppDeckSize: Int = 0
-
-    private var buttonST: Button? = null
-
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentInGameBinding.inflate(inflater, container, false)
+        _binding = FragmentMatchBinding.inflate(inflater, container, false)
         return binding.apply {
-
-            buttonST = binding.btSuperTrunfo
-//            deck = DeckLocalDataSource.getDeck(requireContext(), args.collection.toInt())
-//            myCards = DeckLocalDataSource.splitCards(deck!!, "me")?.toMutableList()
-//            oppCards = DeckLocalDataSource.splitCards(deck!!, "opp")?.toMutableList()
-            myDeckSize = myCards?.size!!
-            oppDeckSize = oppCards?.size!!
-
-            refreshViews()
-
+            vm.matchStart(args.collection.toInt())
+            vm.myCards.observe(viewLifecycleOwner) {
+                when {
+                    vm.myCards.value!!.isEmpty() ->
+                        findNavController().navigate(MatchFragmentDirections.actionDestinationInGameToDestinationGameOver())
+                    vm.oppCards.value!!.isEmpty() ->
+                        findNavController().navigate(MatchFragmentDirections.actionDestinationInGameToDestinationGameWon())
+                    else ->
+                        setViews()
+                }
+            }
         }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.title = "Super Trunfo ${vm.deck.value?.name}"
 
-        val buttonCall: Button = binding.buttonCall
-        var winner: String
-
-        (activity as AppCompatActivity).supportActionBar?.title = "Super Trunfo ${deck?.name}"
-
-        buttonCall.setOnClickListener(View.OnClickListener {
+        binding.buttonCall.setOnClickListener(View.OnClickListener {
             if (binding.radioGroup.checkedRadioButtonId == -1) {
-                Toast.makeText(context, "Please, select an attribute to call", Toast.LENGTH_SHORT).show()
+                Snackbar.make(view, "Por favor, escolha uma opção para chamar.", Snackbar.LENGTH_SHORT).show()
             } else {
-                winner = when (resources.getResourceEntryName(binding.radioGroup.checkedRadioButtonId)) {
-//                    "radioOption1" -> DeckLocalDataSource.cardBattle(myCard!!.att1, oppCard!!.att1)
-//                    "radioOption2" -> DeckLocalDataSource.cardBattle(myCard!!.att2, oppCard!!.att2)
-//                    "radioOption3" -> DeckLocalDataSource.cardBattle(myCard!!.att3, oppCard!!.att3)
-//                    "radioOption4" -> DeckLocalDataSource.cardBattle(myCard!!.att4, oppCard!!.att4)
-                    else -> ""
+                when (resources.getResourceEntryName(binding.radioGroup.checkedRadioButtonId)) {
+                    "radioOption1" -> vm.cardBattle(vm.mCard.att1, vm.oCard.att1)
+                    "radioOption2" -> vm.cardBattle(vm.mCard.att2, vm.oCard.att2)
+                    "radioOption3" -> vm.cardBattle(vm.mCard.att3, vm.oCard.att3)
+                    "radioOption4" -> vm.cardBattle(vm.mCard.att4, vm.oCard.att4)
                 }
-
-                passTheCard(winner)
-                checkGameState()
             }
         })
 
-//        buttonST?.setOnClickListener(View.OnClickListener {
-//            if (DeckLocalDataSource.superTrunfo(oppCard!!.id)) passTheCard("CPU") else passTheCard("Player")
-//            Snackbar.make(view, "CPU card id: ${oppCard!!.id}", Snackbar.LENGTH_SHORT).show()
-//            checkGameState()
-//        })
+        binding.btSuperTrunfo.setOnClickListener(View.OnClickListener {
+            val cardId: String = vm.oCard.id
+            val result = when (vm.superTrunfoCall()) {
+                true -> "Você venceu :)"
+                else -> "Você perdeu o Super Trunfo :("
+            }
+            Snackbar.make(view, "Id do card rival: $cardId. $result", Snackbar.LENGTH_SHORT).show()
+        })
     }
 
-    private fun checkGameState() {
-        myDeckSize = myCards?.size!!
-        oppDeckSize = oppCards?.size!!
+    private fun setViews() {
+        binding.radioOption1.text = vm.deck.value!!.att1Label
+        binding.radioOption2.text = vm.deck.value!!.att2Label
+        binding.radioOption3.text = vm.deck.value!!.att3Label
+        binding.radioOption4.text = vm.deck.value!!.att4Label
 
-        when {
-            oppDeckSize == 0 -> findNavController().navigate(InGameFragmentDirections.actionDestinationInGameToDestinationGameWon())
-            myDeckSize == 0 -> findNavController().navigate(InGameFragmentDirections.actionDestinationInGameToDestinationGameOver())
-            else -> refreshViews()
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun refreshViews() {
-
-        binding.tvYourCardsNumber.text = "$myDeckSize"
-        binding.tvOppCardsNumber.text = "$oppDeckSize"
-
-        myCard = myCards?.get(0)
-        oppCard = oppCards?.get(0)
-
-        binding.ivCardArt.load(myCard!!.img) {
+        binding.ivCardArt.load(vm.mCard.img) {
             listener(onError = { _: ImageRequest, _: ErrorResult ->
                 binding.ivCardArt.setImageResource(R.drawable.ic_launcher_background)
             })
         }
 
-        binding.tvCardName.text = myCard?.name
-        binding.tvCardId.text = myCard?.id
+        binding.tvCardId.text = vm.mCard.id
+        binding.tvCardName.text = vm.mCard.name
 
-        binding.radioOption1.text = "${deck?.att1Label}"
-        binding.radioOption2.text = "${deck?.att2Label}"
-        binding.radioOption3.text = "${deck?.att3Label}"
-        binding.radioOption4.text = "${deck?.att4Label}"
+        binding.tvOption1.text = "${vm.mCard.att1} ${vm.deck.value!!.att1Unit}"
+        binding.tvOption2.text = "${vm.mCard.att2} ${vm.deck.value!!.att2Unit}"
+        binding.tvOption3.text = "${vm.mCard.att3} ${vm.deck.value!!.att3Unit}"
+        binding.tvOption4.text = "${vm.mCard.att4} ${vm.deck.value!!.att4Unit}"
 
-        binding.tvOption1.text = "${myCard?.att1.toString()} ${deck?.att1Unit}"
-        binding.tvOption2.text = "${myCard?.att2.toString()} ${deck?.att2Unit}"
-        binding.tvOption3.text = "${myCard?.att3.toString()} ${deck?.att3Unit}"
-        binding.tvOption4.text = "${myCard?.att4.toString()} ${deck?.att4Unit}"
+        binding.tvYourCardsNumber.text = vm.myCards.value!!.size.toString()
+        binding.tvOppCardsNumber.text = vm.oppCards.value!!.size.toString()
 
-        binding.radioGroup.clearCheck()
-
-        if (myCard?.trunfo!!) buttonST!!.visibility = View.VISIBLE else buttonST!!.visibility = View.GONE
-    }
-
-    private fun passTheCard(winner: String) {
-        when (winner) {
-            "Player" -> {
-                myCards!!.add(oppCard!!)
-                myCards!!.add(myCard!!)
-                myCards!!.removeFirst()
-                oppCards!!.removeFirst()
-            }
-            "CPU" -> {
-                oppCards!!.add(myCard!!)
-                oppCards!!.add(oppCard!!)
-                oppCards!!.removeFirst()
-                myCards!!.removeFirst()
-
-                val myDeckSize = myCards!!.size - 1
-                val rd = (0..myDeckSize).random()
-                for (i in 0..rd) {
-                    oppCards!!.add(myCard!!)
-                    oppCards!!.add(oppCard!!)
-                    oppCards!!.removeFirst()
-                    myCards!!.removeFirst()
-                }
-
-                if (myCards!!.size > 0) {
-                    myCards!!.add(oppCard!!)
-                    myCards!!.add(myCard!!)
-                    myCards!!.removeFirst()
-                    oppCards!!.removeFirst()
-                }
-
-                Snackbar.make(requireView(), "O oponente venceu ${rd + 2} duelo(s)", Snackbar.LENGTH_LONG).show()
-            }
-            else -> {
-                Toast.makeText(context, "Please, select an attribute to call", Toast.LENGTH_SHORT).show()
-            }
-        }
+        if (vm.mCard.trunfo)
+            binding.btSuperTrunfo.visibility = View.VISIBLE else binding.btSuperTrunfo.visibility = View.GONE
     }
 }

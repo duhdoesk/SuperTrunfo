@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.title.TitleFragment">
+    tools:context=".ui.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_marginEnd="16dp"
             android:clickable="false"
             android:gravity="center"
-            android:text="@string/title_description"
+            android:text="@string/home_fragment_description"
             android:textColor="@color/design_default_color_background"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"

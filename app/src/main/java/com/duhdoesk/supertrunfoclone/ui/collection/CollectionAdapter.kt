@@ -12,14 +12,15 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.duhdoesk.supertrunfoclone.R
-import com.duhdoesk.supertrunfoclone.datasource.Datasource
-import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Deck
+import com.duhdoesk.supertrunfoclone.datasource.DeckLocalDataSource
+import com.duhdoesk.supertrunfoclone.ui.match.inGameHelper.Deck
+import javax.inject.Inject
 
 
-class CollectionAdapter(context: Context) :
+class CollectionAdapter @Inject constructor (private val context: Context, private val deckLocalDataSource: DeckLocalDataSource) :
     RecyclerView.Adapter<CollectionAdapter.ViewHolder>() {
 
-    private var listOfDecks: List<Deck> = Datasource.getListOfDecks(context)
+    private var listOfDecks: List<Deck> = deckLocalDataSource.loadDecks()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var textView: TextView = view.findViewById(R.id.cardview_text)
@@ -27,8 +28,6 @@ class CollectionAdapter(context: Context) :
         var bundle: Bundle = bundleOf("col" to adapterPosition)
 
         init {
-            // Define click listener for the ViewHolder's View.
-
             view.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
                     R.id.action_destination_collection_to_destination_inGame,
@@ -38,26 +37,18 @@ class CollectionAdapter(context: Context) :
         }
     }
 
-    // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.cards_layout, viewGroup, false)
 
         return ViewHolder(view)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
         viewHolder.textView.text = listOfDecks[position].name
         viewHolder.imageView.load(listOfDecks[position].img)
-        //viewHolder.imageView.setImageResource(listOfDecks[position].cover)
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = listOfDecks.size
 
 }

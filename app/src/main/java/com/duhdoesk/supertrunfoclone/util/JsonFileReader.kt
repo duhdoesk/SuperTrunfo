@@ -2,8 +2,9 @@ package com.duhdoesk.supertrunfoclone.util
 
 import android.content.Context
 import android.util.Log
+import javax.inject.Inject
 
-class JsonFileReader(private val context: Context) {
+class JsonFileReader @Inject constructor(private val context: Context) {
 
     fun readJsonAsset(fileName: String): String? {
         return try {

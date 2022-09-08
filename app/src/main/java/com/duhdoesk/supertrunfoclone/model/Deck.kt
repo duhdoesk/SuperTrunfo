@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper
+package com.duhdoesk.supertrunfoclone.ui.match.inGameHelper
 
 import com.duhdoesk.supertrunfoclone.model.Card
 import kotlinx.serialization.Serializable

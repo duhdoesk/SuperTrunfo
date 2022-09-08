@@ -1,9 +1,7 @@
-package com.duhdoesk.supertrunfoclone
+package com.duhdoesk.supertrunfoclone.ui.main
 
-import android.app.Activity
 import android.content.Context
 import androidx.navigation.fragment.NavHostFragment
-import com.duhdoesk.supertrunfoclone.ui.collection.CollectionFragmentFactory
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
@@ -13,7 +11,7 @@ import javax.inject.Inject
 class MainNavHostFragment: NavHostFragment() {
 
     @Inject
-    lateinit var fragmentFactory: CollectionFragmentFactory
+    lateinit var fragmentFactory: MainFragmentFactory
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

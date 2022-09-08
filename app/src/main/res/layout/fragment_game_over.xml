@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/grow_yellow"
-            android:text="@string/lets_doeit"
+            android:text="@string/lets_doit"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/textView8"
             app:layout_constraintEnd_toStartOf="@+id/btNotNow"

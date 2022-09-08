@@ -1,51 +1,23 @@
 package com.duhdoesk.supertrunfoclone.datasource
 
-import android.content.Context
-import com.duhdoesk.supertrunfoclone.model.Card
-import com.duhdoesk.supertrunfoclone.ui.inGame.InGameDataSource
-import com.duhdoesk.supertrunfoclone.ui.inGame.inGameHelper.Deck
+import com.duhdoesk.supertrunfoclone.ui.match.inGameHelper.Deck
 import com.duhdoesk.supertrunfoclone.util.JsonFileReader
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
+import javax.inject.Inject
 
-class Datasource {
+class DeckLocalDataSource @Inject constructor(private val jsonFileReader: JsonFileReader) {
 
     companion object {
+        private const val DECKS_JSON_FILE_NAME = "decks.json"
+    }
 
-        fun getListOfDecks(context: Context): List<Deck> {
-            val decks: List<Deck> = InGameDataSource(JsonFileReader(context)).loadDecks()
-            return decks
-        }
+    fun loadDecks(): List<Deck> {
+        val rawJson = jsonFileReader.readJsonAsset(DECKS_JSON_FILE_NAME)
+            ?: return emptyList()
 
-        fun getDeck(context: Context, index: Int = 0): Deck {
-            val decks: List<Deck> = InGameDataSource(JsonFileReader(context)).loadDecks()
-            val deck: Deck = decks[index]
+        val jsonReader = Json { isLenient = true }
 
-            deck.cards = deck.cards.shuffled()
-            return deck
-        }
-
-        fun splitCards(deck: Deck, player: String): List<Card>? {
-
-            val totalCartas: Int = deck.cards.size
-
-            val deck = when (player) {
-                "me" -> deck.cards.subList(0, (totalCartas + 1) / 2)
-                "opp" -> deck.cards.subList((totalCartas + 1) / 2, totalCartas)
-                else -> null
-            }
-            return deck
-        }
-
-        fun cardBattle(myCardValue: Int, oppCardValue: Int): String {
-            return if (myCardValue > oppCardValue) "Player" else "CPU"
-        }
-
-        fun cardBattle(myCardValue: Double, oppCardValue: Double): String {
-            return if (myCardValue > oppCardValue) "Player" else "CPU"
-        }
-
-        fun superTrunfo(cardId: String): Boolean {
-            val pattern = Regex("A")
-            return pattern.containsMatchIn(cardId)
-        }
+        return jsonReader.decodeFromString(rawJson)
     }
 }
