@@ -57,11 +57,10 @@ class MatchFragment : Fragment() {
             if (binding.radioGroup.checkedRadioButtonId == -1) {
                 Snackbar.make(view, "Por favor, escolha uma opção para chamar.", Snackbar.LENGTH_SHORT).show()
             } else {
-                when (resources.getResourceEntryName(binding.radioGroup.checkedRadioButtonId)) {
-                    "radioOption1" -> vm.cardBattle(vm.mCard.att1, vm.oCard.att1)
-                    "radioOption2" -> vm.cardBattle(vm.mCard.att2, vm.oCard.att2)
-                    "radioOption3" -> vm.cardBattle(vm.mCard.att3, vm.oCard.att3)
-                    "radioOption4" -> vm.cardBattle(vm.mCard.att4, vm.oCard.att4)
+                if (vm.cardBattle(resources.getResourceEntryName(binding.radioGroup.checkedRadioButtonId))) {
+                    Snackbar.make(view, "Você venceu! Boa escolha :)", Snackbar.LENGTH_SHORT).show()
+                } else {
+                    Snackbar.make(view, "Você perdeu essa :(", Snackbar.LENGTH_SHORT).show()
                 }
             }
         })

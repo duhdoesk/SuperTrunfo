@@ -29,15 +29,30 @@ class MatchViewModel @Inject constructor(private val deckLocalDataSource: DeckLo
         dealCards()
     }
 
-    fun cardBattle(myAtt: Int, oppAtt: Int) {
-        val winner: Boolean = (myAtt > oppAtt)
-        passingCard(winner)
+    fun cardBattle(att: String): Boolean {
+        return when (att) {
+            "radioOption1" -> {
+                passingCard(mCard.att1 > oCard.att1)
+                (mCard.att1 > oCard.att1)
+            }
+            "radioOption2" -> {
+                passingCard(mCard.att2 > oCard.att2)
+                (mCard.att2 > oCard.att2)
+            }
+            "radioOption3" -> {
+                passingCard(mCard.att3 > oCard.att3)
+                (mCard.att3 > oCard.att3)
+            }
+            "radioOption4" -> {
+                passingCard(mCard.att4 > oCard.att4)
+                (mCard.att4 > oCard.att4)
+            }
+            else -> {
+                true
+            }
+        }
     }
 
-    fun cardBattle(myAtt: Double, oppAtt: Double) {
-        val winner: Boolean = (myAtt > oppAtt)
-        passingCard(winner)
-    }
 
     fun superTrunfoCall() : Boolean {
         val pattern = Regex("A")
