@@ -32,7 +32,7 @@
     <string name="L">L</string>
     <string name="W">W</string>
     <string name="you_lost">Tente novamente!</string>
-    <string name="you_win">Vitória!</string>
+    <string name="you_win">Você venceu a batalha!</string>
     <string name="not_now">Agora não</string>
     <string name="lets_doit">Vamos lá</string>
     <string name="play_again">Jogar novamente</string>

@@ -98,6 +98,8 @@ class MatchFragment : Fragment() {
         binding.tvYourCardsNumber.text = vm.myCards.value!!.size.toString()
         binding.tvOppCardsNumber.text = vm.oppCards.value!!.size.toString()
 
+        binding.radioGroup.clearCheck()
+
         if (vm.mCard.trunfo)
             binding.btSuperTrunfo.visibility = View.VISIBLE else binding.btSuperTrunfo.visibility = View.GONE
     }

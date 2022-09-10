@@ -60,7 +60,7 @@
                 <RadioButton
                     android:id="@+id/radioOption1"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="48dp"
                     android:paddingLeft="10dp"
                     android:text="@string/option1_radio"
                     android:textColor="@color/white"
@@ -70,7 +70,7 @@
                 <RadioButton
                     android:id="@+id/radioOption2"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="48dp"
                     android:background="@color/grow_medium_gray"
                     android:paddingLeft="10dp"
                     android:text="@string/option2_radio"
@@ -81,7 +81,7 @@
                 <RadioButton
                     android:id="@+id/radioOption3"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="48dp"
                     android:paddingLeft="10dp"
                     android:text="@string/option3_radio"
                     android:textColor="@color/white"
@@ -91,7 +91,7 @@
                 <RadioButton
                     android:id="@+id/radioOption4"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="48dp"
                     android:background="@color/grow_medium_gray"
                     android:paddingLeft="10dp"
                     android:text="@string/option4_radio"
@@ -104,18 +104,16 @@
                 android:id="@+id/buttonCall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/about_description_dark_text_color"
                 android:text="@string/call_button"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/tvOpponentCards"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btSuperTrunfo" />
+                app:layout_constraintStart_toEndOf="@+id/btSuperTrunfo"
+                app:layout_constraintTop_toBottomOf="@+id/tvOption4" />
 
             <TextView
                 android:id="@+id/tvOpponentCards"
@@ -165,7 +163,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="64dp"
                 android:text="@string/number_your_cards"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -193,25 +191,19 @@
                 android:id="@+id/btSuperTrunfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/grow_yellow"
                 android:text="@string/super_trunfo"
                 android:textColor="@color/black"
                 android:visibility="visible"
-                app:layout_constraintBottom_toTopOf="@+id/buttonCall"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBaseline_toBaselineOf="@+id/buttonCall"
+                app:layout_constraintEnd_toStartOf="@+id/buttonCall"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvOption1"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="right|center_vertical"
                 android:paddingRight="10dp"
@@ -227,7 +219,7 @@
             <TextView
                 android:id="@+id/tvOption2"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
                 android:background="@color/grow_medium_gray"
                 android:gravity="right|center_vertical"
@@ -244,7 +236,7 @@
             <TextView
                 android:id="@+id/tvOption3"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="right|center_vertical"
                 android:paddingRight="10dp"
@@ -260,7 +252,7 @@
             <TextView
                 android:id="@+id/tvOption4"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
                 android:background="@color/grow_medium_gray"
                 android:gravity="right|center_vertical"
