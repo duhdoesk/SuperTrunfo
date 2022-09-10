@@ -5,7 +5,7 @@ O icônico game de cartas **Super Trunfo**, da **Grow**, agora disponível para 
 
 ## Screenshots
 
-![Screenshot](Screenshot_20220910_160428.png {width=200})
-![Screenshot](Screenshot_20220910_160507.png {width=200})
-![Screenshot](Screenshot_20220910_160539.png {width=200})
-![Screenshot](Screenshot_20220910_160553.png {width=200})
+<img src="Screenshot_20220910_160507.png" height="200"/>
+<img src="Screenshot_20220910_160428.png" height="200"/>
+<img src="Screenshot_20220910_160539.png" height="200"/>
+<img src="Screenshot_20220910_160553.png" height="200"/>
