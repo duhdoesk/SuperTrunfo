@@ -14,13 +14,12 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-class MainFragmentFactory @Inject constructor(private val collectionAdapter: CollectionAdapter)
-    : FragmentFactory(){
+class MainFragmentFactory @Inject constructor(): FragmentFactory(){
 
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
         return when (className) {
             CollectionFragment::class.java.name -> {
-                CollectionFragment(collectionAdapter)
+                CollectionFragment()
             }
             else -> super.instantiate(classLoader, className)
         }

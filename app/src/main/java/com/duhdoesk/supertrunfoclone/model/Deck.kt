@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Deck(
+    val id: String,
     val name: String,
     val att1Label: String,
     val att2Label: String,

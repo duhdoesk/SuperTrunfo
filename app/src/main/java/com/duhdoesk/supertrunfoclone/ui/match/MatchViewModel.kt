@@ -1,6 +1,5 @@
 package com.duhdoesk.supertrunfoclone.ui.match
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.duhdoesk.supertrunfoclone.datasource.DeckLocalDataSource
@@ -9,90 +8,108 @@ import com.duhdoesk.supertrunfoclone.ui.match.inGameHelper.Deck
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+sealed class MatchState {
+    object Lost : MatchState()
+    object Won : MatchState()
+    data class NextCard(val myCard: Card, val oCard: Card) : MatchState()
+}
+
 @HiltViewModel
 class MatchViewModel @Inject constructor(private val deckLocalDataSource: DeckLocalDataSource) : ViewModel() {
 
-    private val _deck = MutableLiveData<Deck>()
-    val deck: LiveData<Deck> get() = _deck
+    private var myCards: MutableList<Card> = mutableListOf()
+    private var oppCards: MutableList<Card> = mutableListOf()
 
-    private val _myCards = MutableLiveData<List<Card>>()
-    val myCards: LiveData<List<Card>> get() = _myCards
-    val mCard: Card get() = _myCards.value!![0]
+    val deck = MutableLiveData<Deck>()
+    var cardCounts = MutableLiveData<Pair<Int, Int>>()
+    val matchState = MutableLiveData<MatchState>()
 
-    private val _oppCards = MutableLiveData<List<Card>>()
-    val oppCards: LiveData<List<Card>> get() = _oppCards
-    val oCard: Card get() = _oppCards.value!![0]
+    enum class Option {
+        A, B, C, D
+    }
 
-    fun matchStart(index: Int) {
-        getDeck(index)
-        shuffleCards()
+    var selectedOption: Option? = null
+
+    fun matchStart(deckId: String) {
+        deck.value = getDeckAndShuffle(deckId)
         dealCards()
     }
 
-    fun cardBattle(att: String): Boolean {
-        return when (att) {
-            "radioOption1" -> {
-                passingCard(mCard.att1 > oCard.att1)
-                (mCard.att1 > oCard.att1)
+    fun cardBattle(): Boolean {
+        val myCard = (matchState.value as? MatchState.NextCard)?.myCard ?: return false
+        val oCard = (matchState.value as? MatchState.NextCard)?.oCard ?: return false
+        return when (selectedOption) {
+            Option.A -> {
+                passingCard(myCard.att1 > oCard.att1)
+                (myCard.att1 > oCard.att1)
             }
-            "radioOption2" -> {
-                passingCard(mCard.att2 > oCard.att2)
-                (mCard.att2 > oCard.att2)
+            Option.B -> {
+                passingCard(myCard.att2 > oCard.att2)
+                (myCard.att2 > oCard.att2)
             }
-            "radioOption3" -> {
-                passingCard(mCard.att3 > oCard.att3)
-                (mCard.att3 > oCard.att3)
+            Option.C -> {
+                passingCard(myCard.att3 > oCard.att3)
+                (myCard.att3 > oCard.att3)
             }
-            "radioOption4" -> {
-                passingCard(mCard.att4 > oCard.att4)
-                (mCard.att4 > oCard.att4)
+            Option.D -> {
+                passingCard(myCard.att4 > oCard.att4)
+                (myCard.att4 > oCard.att4)
             }
-            else -> {
-                true
-            }
+            else -> false
+        }.also {
+            selectedOption = null
         }
     }
 
-
-    fun superTrunfoCall() : Boolean {
+    fun superTrunfoCall(): Pair<Boolean, String> {
+        val state = matchState.value as? MatchState.NextCard ?: return false to ""
         val pattern = Regex("A")
-        val winner: Boolean = !pattern.containsMatchIn(oCard.id)
+        val winner: Boolean = !pattern.containsMatchIn(state.oCard.id)
+
+        val oCardId = state.oCard.id
+
         passingCard(winner)
-        return winner
+        return winner to oCardId
     }
 
-    private fun getDeck(index: Int) {
-        _deck.value = deckLocalDataSource.loadDecks()[index]
+    private fun getDeckAndShuffle(deckId: String): Deck? {
+        val deck =  deckLocalDataSource.loadDecks().find { it.id == deckId } ?: return null
+        return deck.copy(cards = deck.cards.shuffled())
     }
 
-    private fun shuffleCards() {
-        _deck.value!!.cards = _deck.value!!.cards.shuffled()
-    }
 
     private fun dealCards() {
-        _myCards.value = _deck.value?.cards!!.subList(0, (_deck.value!!.cards.size + 1) / 2)
-        _oppCards.value = _deck.value?.cards!!.subList((_deck.value!!.cards.size + 1) / 2, _deck.value!!.cards.size)
+        deck.value?.let {
+            myCards = it.cards.subList(0, (it.cards.size + 1) / 2).toMutableList()
+            oppCards = it.cards.subList((it.cards.size + 1) / 2, it.cards.size).toMutableList()
+            matchState.value = MatchState.NextCard(myCards[0], oppCards[0])
+            cardCounts.value = myCards.size to oppCards.size
+        }
     }
 
     private fun passingCard(winner: Boolean) {
-        val myList: MutableList<Card> = _myCards.value?.toMutableList()!!
-        val oppList: MutableList<Card> = _oppCards.value?.toMutableList()!!
-
         when (winner) {
             true -> {
-                myList.add(myList[0])
-                myList.add(oppList[0])
+                myCards.add(myCards[0])
+                myCards.add(oppCards[0])
             }
             else -> {
-                oppList.add(oppList[0])
-                oppList.add(myList[0])
+                oppCards.add(oppCards[0])
+                oppCards.add(myCards[0])
             }
         }
 
-        myList.removeAt(0)
-        oppList.removeAt(0)
+        myCards.removeAt(0)
+        oppCards.removeAt(0)
 
-        _oppCards.postValue(oppList)
-        _myCards.postValue(myList)
+        cardCounts.value = myCards.size to oppCards.size
+
+        if (myCards.isEmpty()) {
+            matchState.value = MatchState.Lost
+        } else if (oppCards.isEmpty()) {
+            matchState.value = MatchState.Won
+        } else {
+            matchState.value = MatchState.NextCard(myCards[0], oppCards[0])
+        }
     }
 }
