@@ -16,16 +16,21 @@ import com.duhdoesk.supertrunfoclone.datasource.DeckLocalDataSource
 import com.duhdoesk.supertrunfoclone.ui.match.inGameHelper.Deck
 import javax.inject.Inject
 
+class CollectionAdapter : RecyclerView.Adapter<CollectionAdapter.ViewHolder>() {
 
-class CollectionAdapter @Inject constructor (private val context: Context, private val deckLocalDataSource: DeckLocalDataSource) :
-    RecyclerView.Adapter<CollectionAdapter.ViewHolder>() {
+    private var listOfDecks: List<Deck> = emptyList()
 
-    private var listOfDecks: List<Deck> = deckLocalDataSource.loadDecks()
+    fun setDecks(decks: List<Deck>) {
+        listOfDecks = decks
+    }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var textView: TextView = view.findViewById(R.id.cardview_text)
-        var imageView: ImageView = view.findViewById(R.id.cardview_card)
-        var bundle: Bundle = bundleOf("col" to adapterPosition)
+    var onClickListener: ((Deck) -> Unit)? = null
+
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val root: View = view.findViewById(R.id.root)
+        val textView: TextView = view.findViewById(R.id.cardview_text)
+        val imageView: ImageView = view.findViewById(R.id.cardview_card)
+        val bundle: Bundle = bundleOf("col" to adapterPosition)
 
         init {
             view.setOnClickListener(
@@ -34,6 +39,14 @@ class CollectionAdapter @Inject constructor (private val context: Context, priva
                     bundle
                 )
             )
+        }
+
+        fun bind(deck: Deck) {
+            textView.text = deck.name
+            imageView.load(deck.img)
+            root.setOnClickListener {
+                onClickListener?.invoke(deck)
+            }
         }
     }
 
@@ -45,8 +58,8 @@ class CollectionAdapter @Inject constructor (private val context: Context, priva
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.textView.text = listOfDecks[position].name
-        viewHolder.imageView.load(listOfDecks[position].img)
+        val deck = listOfDecks[position]
+        viewHolder.bind(deck)
     }
 
     override fun getItemCount() = listOfDecks.size

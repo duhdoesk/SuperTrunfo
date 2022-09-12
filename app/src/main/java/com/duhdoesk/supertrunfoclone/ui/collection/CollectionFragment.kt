@@ -5,22 +5,26 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.databinding.FragmentCollectionBinding
+import com.duhdoesk.supertrunfoclone.ui.match.inGameHelper.Deck
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class CollectionFragment constructor (private val collectionAdapter: CollectionAdapter)
-    : Fragment() {
+class CollectionFragment : Fragment() {
+
+    private val collectionAdapter = CollectionAdapter()
 
     private lateinit var recyclerView: RecyclerView
     private var _binding: FragmentCollectionBinding? = null
     private val binding get() = _binding!!
+
+    private val vm: CollectionViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,35 +40,19 @@ class CollectionFragment constructor (private val collectionAdapter: CollectionA
 
         recyclerView = binding.collectionRecyclerView
 
-        recyclerView.apply{
+        collectionAdapter.onClickListener = { deck: Deck ->
+            findNavController().navigate(
+                CollectionFragmentDirections.actionDestinationCollectionToDestinationInGame(deck.id)
+            )
+        }
+
+        vm.decks.observe(viewLifecycleOwner) {
+            collectionAdapter.setDecks(it)
+        }
+
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = collectionAdapter
         }
-
-        recyclerView.addOnItemClickListener(object : OnItemClickListener {
-            override fun onItemClicked(position: Int, view: View) {
-                findNavController().navigate(
-                    CollectionFragmentDirections.actionDestinationCollectionToDestinationInGame(position.toString()))
-            }
-        })
-    }
-
-    interface OnItemClickListener {
-        fun onItemClicked(position: Int, view: View)
-    }
-
-    private fun RecyclerView.addOnItemClickListener(onClickListener: OnItemClickListener) {
-        this.addOnChildAttachStateChangeListener(object : RecyclerView.OnChildAttachStateChangeListener {
-            override fun onChildViewDetachedFromWindow(view: View) {
-                view.setOnClickListener(null)
-            }
-
-            override fun onChildViewAttachedToWindow(view: View) {
-                view.setOnClickListener {
-                    val holder = getChildViewHolder(view)
-                    onClickListener.onItemClicked(holder.adapterPosition, view)
-                }
-            }
-        })
     }
 }
