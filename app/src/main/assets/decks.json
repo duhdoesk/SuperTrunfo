@@ -1,48 +1,304 @@
 [
   {
+    "id" : "1",
     "name" : "Carros de Luxo",
-    "att1Label" : "Cilindradas",
-    "att2Label" : "Velocidade Máxima",
-    "att3Label" : "Potência",
-    "att4Label" : "Comprimento",
-    "att1Unit" : "ccm",
-    "att2Unit" : "km/h",
-    "att3Unit" : "cv",
-    "att4Unit" : "m",
     "img" : "https://www.infomoney.com.br/wp-content/uploads/2020/05/IMAGEM_3.jpg?quality=50&resize=1024%2C640&strip=all",
+    "attributes": [
+      {"id" : "A", "label" : "Cilindradas", "unit" : "ccm"},
+      {"id" : "B", "label" : "Velocidade Máxima", "unit" : "km/h"},
+      {"id" : "C", "label" : "Potência", "unit" : "cv"},
+      {"id" : "D", "label" : "Comprimento", "unit" : "m"}
+    ],
     "cards" : [
-      {"id": "1A", "img": "https://www.supercars.net/blog/wp-content/uploads/2016/04/2001_Maserati_3200GTAssettoCorsa1.jpg", "name": "Maserati 'Asseto Corsa'", "att1": 3217, "att2": 280, "att3": 369, "att4": 4.51},
-      {"id": "2A", "img": "https://cdn.classic-trader.com/I/images/1920_1920_inset/vehicle_ad_standard_image_9fb111198f0ea1df4ee7eb7f2cf0ac56.jpg", "name": "Rolls-Royce Park Ward", "att1": 5379, "att2": 225, "att3": 326, "att4": 5.65},
-      {"id": "3A", "img": "https://besthqwallpapers.com/Uploads/21-12-2019/116928/thumb2-lexus-rx-300-road-2003-cars-suvs-xu10.jpg", "name": "Lexus RX 300", "att1": 2995, "att2": 180, "att3": 201, "att4": 4.58},
-      {"id": "4A", "img": "https://1.bp.blogspot.com/-iWJMT7tCJw0/UEjDvXTZamI/AAAAAAABHOY/PQBF3qfArJU/s1600/001.jpg", "name": "Bugatti EB 16.4 Veyron", "att1": 7993, "att2": 404, "att3": 1001, "att4": 4.38},
-      {"id": "5A", "img": "https://www.autolivraria.com.br/carros/vw/d1-2002-3g.jpg", "name": "VW D1", "att1": 6000, "att2": 250, "att3": 450, "att4": 4.95},
-      {"id": "6A", "img": "https://hips.hearstapps.com/autoweek/assets/s3fs-public/131019835.jpg?crop=1xw:0.8xh;center,top&resize=1200:*", "name": "Binz XL", "att1": 4266, "att2": 230, "att3": 279, "att4": 5.79},
-      {"id": "7A", "img": "https://www.ultimatecarpage.com/images/car/2100/Pagani-Zonda-C12-S-Monza-15297.jpg", "name": "Pagani Zonda C12 S", "att1": 7010, "att2": 350, "att3": 550, "att4": 4.40},
-      {"id": "8A", "img": "https://file.kelleybluebookimages.com/kbb/base/house/2001/2001-Lexus-LS-FrontSide_LELS4011_505x375.jpg", "name": "Lexus LS 430", "att1": 4293, "att2": 250, "att3": 282, "att4": 5.00},
-      {"id": "1B", "img": "https://i.gaw.to/content/photos/10/71/107159_2012_Jaguar_XK.jpg", "name": "Jaguar XKR", "att1": 3996, "att2": 250, "att3": 363, "att4": 4.76},
-      {"id": "2B", "img": "https://media.carsandbids.com/cdn-cgi/image/width=2080,quality=70/da4b9237bacccdf19c0760cab7aec4a8359010b0/photos/DSC05814.7SGxpNAMw.jpg?t=160503654196", "name": "Mercedes S 63 AMG", "att1": 6258, "att2": 250, "att3": 444, "att4": 5.16},
-      {"id": "3B", "img": "https://img.favcars.com/mercedes-benz/m-klasse/wallpapers_mercedes-benz_m-klasse_2000_3_b.jpg", "name": "Mercedes ML 55 AMG", "att1": 5439, "att2": 235, "att3": 347, "att4": 4.64},
-      {"id": "4B", "img": "https://www.carpixel.net/w/f2ab72b2b24abc9d0a4aabffc1fdb880/ferrari-550-maranello-wallpaper-hd-70960.jpg", "name": "Ferrari 550 Maranello", "att1": 5474, "att2": 320, "att3": 485, "att4": 4.55},
-      {"id": "5B", "img": "https://www.supercars.net/blog/wp-content/uploads/2016/01/Alfa-Romeo-Scighera-Concept-Car.jpg", "name": "ItalDesign Scighera", "att1": 3000, "att2": 310, "att3": 400, "att4": 4.32},
-      {"id": "6B", "img": "https://www.rrsilverspirit.com/Hooper/Emperor/best/Spirit%20Emperor%201989%20KCH26441%203.jpg", "name": "Hooper Rolls-Royce Emperor", "att1": 4293, "att2": 250, "att3": 282, "att4": 5.00},
-      {"id": "7B", "img": "https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/gallery_slide/public/9810101251161921600x1060_0.jpg?itok=VXhbdeE7", "name": "Morgan Aero 8", "att1": 4398, "att2": 258, "att3": 286, "att4": 4.09},
-      {"id": "8B", "img": "https://heycar.com.br/images/2017/Abril/BMW-745-2003.jpg", "name": "BMW 745i", "att1": 4398, "att2": 250, "att3": 333, "att4": 5.00},
-      {"id": "1C", "img": "https://www.planetcarsz.com/img/carros/2021/09/porsche-911-gt2-2008-021-20210923220453-1600x1200.jpg", "name": "Porsche 911 GT2", "att1": 3600, "att2": 315, "att3": 462, "att4": 4.45},
-      {"id": "2C", "img": "https://images.squarespace-cdn.com/content/v1/51722267e4b0532e10d4c7aa/1375394041025-V4ATSIHOR5SYBOEQLZ7D/daimler.jpg?format=1000w", "name": "Daimier Super V8", "att1": 3996, "att2": 250, "att3": 363, "att4": 5.15},
-      {"id": "3C", "img": "https://motos-motor.com.br/c/wp-content/uploads/precos-tabela-land-rover-discovery3-hse-44-v8-4x4-299cv-aut.jpg", "name": "Range Rover", "att1": 4553, "att2": 196, "att3": 218, "att4": 4.71},
-      {"id": "4C", "img": "https://cdn.motor1.com/images/mgl/nvbOk/s1/casil-motors-sp-110-edonis-fenice.jpg", "name": "B. Engineering Edonis", "att1": 3760, "att2": 365, "att3": 680, "att4": 4.35},
-      {"id": "5C", "img": "https://www.planetcarsz.com/assets/uploads/images/VEICULOS/C/CADILLAC/2000_CADILLAC_IMAJ//CADILLAC_IMAJ_2000_01.jpg", "name": "Cadillac Imaj", "att1": 4200, "att2": 300, "att3": 431, "att4": 5.10},
-      {"id": "6C", "img": "https://i.pinimg.com/564x/21/94/51/21945142e612af348025dacb5439e2f0.jpg", "name": "American Custom Lincoln", "att1": 5409, "att2": 200, "att3": 380, "att4": 6.40},
-      {"id": "7C", "img": "https://www.supercars.net/blog/wp-content/uploads/2016/04/615393.jpg", "name": "Mega Monte Carlo", "att1": 5991, "att2": 300, "att3": 395, "att4": 4.45},
-      {"id": "8C", "img": "https://i.pinimg.com/originals/e9/36/91/e936914e77f238595be591bfa52189c4.jpg", "name": "Cadillac Deville DTS", "att1": 4565, "att2": 240, "att3": 305, "att4": 5.26},
-      {"id": "1D", "img": "https://www.encontracarros.com.br/upload/aston-martin/aston-martin-vanquish-1280-01.jpg", "name": "Aston Martin Vanquish", "att1": 5935, "att2": 306, "att3": 460, "att4": 4.67, "trunfo": "true"},
-      {"id": "2D", "img": "https://www.supersprint.com/public/img/1.-359392.jpg", "name": "Bentley Continental T", "att1": 6750, "att2": 270, "att3": 426, "att4": 5.22},
-      {"id": "3D", "img": "https://file.kelleybluebookimages.com/kbb/base/house/2000/2000-BMW-X5-FrontSide_BTX5-001_505x375.jpg", "name": "BMW X5", "att1": 4398, "att2": 207, "att3": 286, "att4": 4.67},
-      {"id": "4D", "img": "https://i.pinimg.com/736x/ef/94/85/ef948560d1b9b145c0e5892de8b79f90--lamborghini-diablo-view-photos.jpg", "name": "Lamborghini Diablo", "att1": 5992, "att2": 330, "att3": 550, "att4": 4.47},
-      {"id": "5D", "img": "https://www.planetcarsz.com/assets/uploads/2015/01/CHRYSLER%20CHRONOS%202000%2002.jpg", "name": "Chrysler Chronos", "att1": 5980, "att2": 280, "att3": 350, "att4": 5.22},
-      {"id": "6D", "img": "https://carsalesbase.com/wp-content/uploads/2015/10/Maybach-U.S-Sales-Figures.jpg", "name": "Maybach Langversion", "att1": 5600, "att2": 250, "att3": 470, "att4": 6.10},
-      {"id": "7D", "img": "https://www.below-the-radar.com/wp-content/uploads/2020/11/Lotec-Sirius-11-1500x1000.jpg?v=1606516681", "name": "Lotec Sirius", "att1": 5987, "att2": 400, "att3": 1200, "att4": 4.12},
-      {"id": "8D", "img": "https://bestcarmagz.net/sites/default/files/63891387493760003_large.jpg", "name": "Audi S8", "att1": 4172, "att2": 250, "att3": 360, "att4": 5.03}
+      {"id": "1A",
+        "name": "Maserati 'Asseto Corsa'",
+        "img": "https://www.supercars.net/blog/wp-content/uploads/2016/04/2001_Maserati_3200GTAssettoCorsa1.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 3217},
+          {"id" : "B", "value" : 280},
+          {"id" : "C", "value" : 369},
+          {"id" : "D", "value" : 4.51}]
+      },
+      {"id": "2A",
+        "name": "Rolls-Royce Park Ward",
+        "img": "https://cdn.classic-trader.com/I/images/1920_1920_inset/vehicle_ad_standard_image_9fb111198f0ea1df4ee7eb7f2cf0ac56.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 5379},
+          {"id" : "B", "value" : 225},
+          {"id" : "C", "value" : 326},
+          {"id" : "D", "value" : 5.65}]
+      },
+      {"id": "3A",
+        "name": "Lexus RX 300",
+        "img": "https://besthqwallpapers.com/Uploads/21-12-2019/116928/thumb2-lexus-rx-300-road-2003-cars-suvs-xu10.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 2995},
+          {"id" : "B", "value" : 180},
+          {"id" : "C", "value" : 201},
+          {"id" : "D", "value" : 4.58}]
+      },
+      {"id": "4A",
+        "name": "Bugatti EB 16.4 Veyron",
+        "img": "https://1.bp.blogspot.com/-iWJMT7tCJw0/UEjDvXTZamI/AAAAAAABHOY/PQBF3qfArJU/s1600/001.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 7993},
+          {"id" : "B", "value" : 404},
+          {"id" : "C", "value" : 1001},
+          {"id" : "D", "value" : 4.38}]
+      },
+      {"id": "5A",
+        "name": "VW D1",
+        "img": "https://www.autolivraria.com.br/carros/vw/d1-2002-3g.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 6000},
+          {"id" : "B", "value" : 250},
+          {"id" : "C", "value" : 450},
+          {"id" : "D", "value" : 4.95}]
+      },
+      {"id": "6A",
+        "name": "Binz XL",
+        "img": "https://hips.hearstapps.com/autoweek/assets/s3fs-public/131019835.jpg?crop=1xw:0.8xh;center,top&resize=1200:*", 
+        "attributes": [
+          {"id" : "A", "value" : 4266},
+          {"id" : "B", "value" : 230},
+          {"id" : "C", "value" : 279},
+          {"id" : "D", "value" : 5.79}]
+      },
+      {"id": "7A",
+        "name": "Pagani Zonda C12 S",
+        "img": "https://www.ultimatecarpage.com/images/car/2100/Pagani-Zonda-C12-S-Monza-15297.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 7010},
+          {"id" : "B", "value" : 350},
+          {"id" : "C", "value" : 550},
+          {"id" : "D", "value" : 4.40}]
+      },
+      {"id": "8A",
+        "name": "Lexus LS 430",
+        "img": "https://file.kelleybluebookimages.com/kbb/base/house/2001/2001-Lexus-LS-FrontSide_LELS4011_505x375.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 4293},
+          {"id" : "B", "value" : 250},
+          {"id" : "C", "value" : 282},
+          {"id" : "D", "value" : 5.00}]
+      },
+      {"id": "1B",
+        "name": "Jaguar XKR",
+        "img": "https://i.gaw.to/content/photos/10/71/107159_2012_Jaguar_XK.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 3996},
+          {"id" : "B", "value" : 250},
+          {"id" : "C", "value" : 363},
+          {"id" : "D", "value" : 4.76}]
+      },
+      {"id": "2B",
+        "name": "Mercedes S 63 AMG",
+        "img": "https://media.carsandbids.com/cdn-cgi/image/width=2080,quality=70/da4b9237bacccdf19c0760cab7aec4a8359010b0/photos/DSC05814.7SGxpNAMw.jpg?t=160503654196",
+        "attributes": [
+          {"id" : "A", "value" : 6258},
+          {"id" : "B", "value" : 250},
+          {"id" : "C", "value" : 444},
+          {"id" : "D", "value" : 5.16}]
+      },
+      {"id": "3B",
+        "name": "Mercedes ML 55 AMG",
+        "img": "https://img.favcars.com/mercedes-benz/m-klasse/wallpapers_mercedes-benz_m-klasse_2000_3_b.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 5439},
+          {"id" : "B", "value" : 235},
+          {"id" : "C", "value" : 347},
+          {"id" : "D", "value" : 4.64}]
+      },
+      {"id": "4B",
+        "name": "Ferrari 550 Maranello",
+        "img": "https://www.carpixel.net/w/f2ab72b2b24abc9d0a4aabffc1fdb880/ferrari-550-maranello-wallpaper-hd-70960.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 5474},
+          {"id" : "B", "value" : 320},
+          {"id" : "C", "value" : 485},
+          {"id" : "D", "value" : 4.55}]
+      },
+      {"id": "5B",
+        "name": "ItalDesign Scighera",
+        "img": "https://www.supercars.net/blog/wp-content/uploads/2016/01/Alfa-Romeo-Scighera-Concept-Car.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 3000},
+          {"id" : "B", "value" : 310},
+          {"id" : "C", "value" : 400},
+          {"id" : "D", "value" : 4.32}]
+      },
+      {"id": "6B",
+        "name": "Hooper Rolls-Royce Emperor",
+        "img": "https://www.rrsilverspirit.com/Hooper/Emperor/best/Spirit%20Emperor%201989%20KCH26441%203.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 4293},
+          {"id" : "B", "value" : 250},
+          {"id" : "C", "value" : 282},
+          {"id" : "D", "value" : 5.00}]
+      },
+      {"id": "7B",
+        "name": "Morgan Aero 8",
+        "img": "https://www.autocar.co.uk/sites/autocar.co.uk/files/styles/gallery_slide/public/9810101251161921600x1060_0.jpg?itok=VXhbdeE7",
+        "attributes": [
+          {"id" : "A", "value" : 4398},
+          {"id" : "B", "value" : 258},
+          {"id" : "C", "value" : 286},
+          {"id" : "D", "value" : 4.09}]
+      },
+      {"id": "8B",
+        "name": "BMW 745i",
+        "img": "https://heycar.com.br/images/2017/Abril/BMW-745-2003.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 4398},
+          {"id" : "B", "value" : 250},
+          {"id" : "C", "value" : 333},
+          {"id" : "D", "value" : 5.00}]
+      },
+      {"id": "1C",
+        "name": "Porsche 911 GT2",
+        "img": "https://www.planetcarsz.com/img/carros/2021/09/porsche-911-gt2-2008-021-20210923220453-1600x1200.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 3600},
+          {"id" : "B", "value" : 315},
+          {"id" : "C", "value" : 462},
+          {"id" : "D", "value" : 4.45}]
+      },
+      {"id": "2C",
+        "name": "Daimier Super V8",
+        "img": "https://images.squarespace-cdn.com/content/v1/51722267e4b0532e10d4c7aa/1375394041025-V4ATSIHOR5SYBOEQLZ7D/daimler.jpg?format=1000w",
+        "attributes": [
+          {"id" : "A", "value" : 3996},
+          {"id" : "B", "value" : 250},
+          {"id" : "C", "value" : 363},
+          {"id" : "D", "value" : 5.15}]
+      },
+      {"id": "3C",
+        "name": "Range Rover",
+        "img": "https://motos-motor.com.br/c/wp-content/uploads/precos-tabela-land-rover-discovery3-hse-44-v8-4x4-299cv-aut.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 4553},
+          {"id" : "B", "value" : 196},
+          {"id" : "C", "value" : 218},
+          {"id" : "D", "value" : 4.71}]
+      },
+      {"id": "4C",
+        "name": "B. Engineering Edonis",
+        "img": "https://cdn.motor1.com/images/mgl/nvbOk/s1/casil-motors-sp-110-edonis-fenice.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 3760},
+          {"id" : "B", "value" : 365},
+          {"id" : "C", "value" : 680},
+          {"id" : "D", "value" : 4.35}]
+      },
+      {"id": "5C",
+        "name": "Cadillac Imaj",
+        "img": "https://www.planetcarsz.com/assets/uploads/images/VEICULOS/C/CADILLAC/2000_CADILLAC_IMAJ//CADILLAC_IMAJ_2000_01.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 4200},
+          {"id" : "B", "value" : 300},
+          {"id" : "C", "value" : 431},
+          {"id" : "D", "value" : 5.10}]
+      },
+      {"id": "6C",
+        "name": "American Custom Lincoln",
+        "img": "https://i.pinimg.com/564x/21/94/51/21945142e612af348025dacb5439e2f0.jpg",
+        "attributes": [
+          {"id" : "A", "value" : 5409},
+          {"id" : "B", "value" : 200},
+          {"id" : "C", "value" : 380},
+          {"id" : "D", "value" : 6.40}]
+      },
+      {"id": "7C",
+        "name": "Mega Monte Carlo",
+        "img": "https://www.supercars.net/blog/wp-content/uploads/2016/04/615393.jpg", 
+        "attributes": [
+          {"id" : "A", "value" : 5991},
+          {"id" : "B", "value" : 300},
+          {"id" : "C", "value" : 395},
+          {"id" : "D", "value" : 4.45}]
+      },
+      {"id": "8C",
+        "name": "Cadillac Deville DTS",
+        "img": "https://i.pinimg.com/originals/e9/36/91/e936914e77f238595be591bfa52189c4.jpg", 
+        "attributes": [
+          {"id" : "A", "value" : 4565},
+          {"id" : "B", "value" : 240},
+          {"id" : "C", "value" : 305},
+          {"id" : "D", "value" : 5.26}]
+      },
+      {"id": "1D",
+        "name": "Aston Martin Vanquish",
+        "img": "https://www.encontracarros.com.br/upload/aston-martin/aston-martin-vanquish-1280-01.jpg", 
+        "attributes": [
+          {"id" : "A", "value" : 5935},
+          {"id" : "B", "value" : 306},
+          {"id" : "C", "value" : 460},
+          {"id" : "D", "value" : 4.67}], 
+        "joker": "true"
+      },
+      {"id": "2D",
+        "name": "Bentley Continental T",
+        "img": "https://www.supersprint.com/public/img/1.-359392.jpg", 
+        "attributes": [
+          {"id" : "A", "value" : 6750},
+          {"id" : "B", "value" : 270},
+          {"id" : "C", "value" : 426},
+          {"id" : "D", "value" : 5.22}]
+      },
+      {"id": "3D",
+        "name": "BMW X5",
+        "img": "https://file.kelleybluebookimages.com/kbb/base/house/2000/2000-BMW-X5-FrontSide_BTX5-001_505x375.jpg", 
+        "attributes": [
+          {"id" : "A", "value" : 4398},
+          {"id" : "B", "value" : 207},
+          {"id" : "C", "value" : 286},
+          {"id" : "D", "value" : 4.67}]
+      },
+      {"id": "4D",
+        "name": "Lamborghini Diablo",
+        "img": "https://i.pinimg.com/736x/ef/94/85/ef948560d1b9b145c0e5892de8b79f90--lamborghini-diablo-view-photos.jpg", 
+        "attributes": [
+          {"id" : "A", "value" : 5992},
+          {"id" : "B", "value" : 330},
+          {"id" : "C", "value" : 550},
+          {"id" : "D", "value" : 4.47}]
+      },
+      {"id": "5D",
+        "name": "Chrysler Chronos",
+        "img": "https://www.planetcarsz.com/assets/uploads/2015/01/CHRYSLER%20CHRONOS%202000%2002.jpg", 
+        "attributes": [
+          {"id" : "A", "value" : 5980},
+          {"id" : "B", "value" : 280},
+          {"id" : "C", "value" : 350},
+          {"id" : "D", "value" : 5.22}]
+      },
+      {"id": "6D",
+        "name": "Maybach Langversion",
+        "img": "https://carsalesbase.com/wp-content/uploads/2015/10/Maybach-U.S-Sales-Figures.jpg", 
+        "attributes": [
+          {"id" : "A", "value" : 5600},
+          {"id" : "B", "value" : 250},
+          {"id" : "C", "value" : 470},
+          {"id" : "D", "value" : 6.10}]
+      },
+      {"id": "7D",
+        "name": "Lotec Sirius",
+        "img": "https://www.below-the-radar.com/wp-content/uploads/2020/11/Lotec-Sirius-11-1500x1000.jpg?v=1606516681", 
+        "attributes": [
+          {"id" : "A", "value" : 5987},
+          {"id" : "B", "value" : 400},
+          {"id" : "C", "value" : 1200},
+          {"id" : "D", "value" : 4.12}]
+      },
+      {"id": "8D",
+        "name": "Audi S8",
+        "img": "https://bestcarmagz.net/sites/default/files/63891387493760003_large.jpg", 
+        "attributes": [
+          {"id" : "A", "value" : 4172},
+          {"id" : "B", "value" : 250},
+          {"id" : "C", "value" : 360},
+          {"id" : "D", "value" : 5.03}]
+      }
     ]
   }
 ]

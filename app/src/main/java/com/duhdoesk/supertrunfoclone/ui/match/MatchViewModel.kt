@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.duhdoesk.supertrunfoclone.datasource.DeckLocalDataSource
 import com.duhdoesk.supertrunfoclone.model.Card
-import com.duhdoesk.supertrunfoclone.ui.match.inGameHelper.Deck
+import com.duhdoesk.supertrunfoclone.model.Deck
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -30,27 +30,23 @@ class MatchViewModel @Inject constructor(private val deckLocalDataSource: DeckLo
     }
 
     fun cardBattle(att: String): Boolean {
-        return when (att) {
+        val winner: Boolean = when (att) {
             "radioOption1" -> {
-                passingCard(mCard.att1 > oCard.att1)
-                (mCard.att1 > oCard.att1)
+                (mCard.attributes.find { it.id == "A" }?.value!! > oCard.attributes.find { it.id == "A" }?.value!!)
             }
             "radioOption2" -> {
-                passingCard(mCard.att2 > oCard.att2)
-                (mCard.att2 > oCard.att2)
+                (mCard.attributes.find { it.id == "B" }?.value!! > oCard.attributes.find { it.id == "B" }?.value!!)
             }
             "radioOption3" -> {
-                passingCard(mCard.att3 > oCard.att3)
-                (mCard.att3 > oCard.att3)
+                (mCard.attributes.find { it.id == "C" }?.value!! > oCard.attributes.find { it.id == "C" }?.value!!)
             }
             "radioOption4" -> {
-                passingCard(mCard.att4 > oCard.att4)
-                (mCard.att4 > oCard.att4)
+                (mCard.attributes.find { it.id == "D" }?.value!! > oCard.attributes.find { it.id == "D" }?.value!!)
             }
-            else -> {
-                true
-            }
+            else -> {true}
         }
+        passingCard(winner)
+        return winner
     }
 
 

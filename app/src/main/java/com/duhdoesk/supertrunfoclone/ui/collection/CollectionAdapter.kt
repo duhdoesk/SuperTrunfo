@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.datasource.DeckLocalDataSource
-import com.duhdoesk.supertrunfoclone.ui.match.inGameHelper.Deck
+import com.duhdoesk.supertrunfoclone.model.Deck
 import javax.inject.Inject
 
 

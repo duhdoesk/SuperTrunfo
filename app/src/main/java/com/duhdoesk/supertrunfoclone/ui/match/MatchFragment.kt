@@ -76,10 +76,10 @@ class MatchFragment : Fragment() {
     }
 
     private fun setViews() {
-        binding.radioOption1.text = vm.deck.value!!.att1Label
-        binding.radioOption2.text = vm.deck.value!!.att2Label
-        binding.radioOption3.text = vm.deck.value!!.att3Label
-        binding.radioOption4.text = vm.deck.value!!.att4Label
+        binding.radioOption1.text = vm.deck.value!!.attributes.find { it.id == "A" }!!.label
+        binding.radioOption2.text = vm.deck.value!!.attributes.find { it.id == "B" }!!.label
+        binding.radioOption3.text = vm.deck.value!!.attributes.find { it.id == "C" }!!.label
+        binding.radioOption4.text = vm.deck.value!!.attributes.find { it.id == "D" }!!.label
 
         binding.ivCardArt.load(vm.mCard.img) {
             listener(onError = { _: ImageRequest, _: ErrorResult ->
@@ -90,17 +90,17 @@ class MatchFragment : Fragment() {
         binding.tvCardId.text = vm.mCard.id
         binding.tvCardName.text = vm.mCard.name
 
-        binding.tvOption1.text = "${vm.mCard.att1} ${vm.deck.value!!.att1Unit}"
-        binding.tvOption2.text = "${vm.mCard.att2} ${vm.deck.value!!.att2Unit}"
-        binding.tvOption3.text = "${vm.mCard.att3} ${vm.deck.value!!.att3Unit}"
-        binding.tvOption4.text = "${vm.mCard.att4} ${vm.deck.value!!.att4Unit}"
+        binding.tvOption1.text = "${vm.mCard.attributes.find { it.id == "A" }!!.value} ${vm.deck.value!!.attributes.find { it.id == "A" }!!.unit}"
+        binding.tvOption2.text = "${vm.mCard.attributes.find { it.id == "B" }!!.value} ${vm.deck.value!!.attributes.find { it.id == "B" }!!.unit}"
+        binding.tvOption3.text = "${vm.mCard.attributes.find { it.id == "C" }!!.value} ${vm.deck.value!!.attributes.find { it.id == "C" }!!.unit}"
+        binding.tvOption4.text = "${vm.mCard.attributes.find { it.id == "D" }!!.value} ${vm.deck.value!!.attributes.find { it.id == "D" }!!.unit}"
 
         binding.tvYourCardsNumber.text = vm.myCards.value!!.size.toString()
         binding.tvOppCardsNumber.text = vm.oppCards.value!!.size.toString()
 
         binding.radioGroup.clearCheck()
 
-        if (vm.mCard.trunfo)
+        if (vm.mCard.joker)
             binding.btSuperTrunfo.visibility = View.VISIBLE else binding.btSuperTrunfo.visibility = View.GONE
     }
 }

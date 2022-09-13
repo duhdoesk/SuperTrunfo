@@ -1,6 +1,6 @@
 package com.duhdoesk.supertrunfoclone.datasource
 
-import com.duhdoesk.supertrunfoclone.ui.match.inGameHelper.Deck
+import com.duhdoesk.supertrunfoclone.model.Deck
 import com.duhdoesk.supertrunfoclone.util.JsonFileReader
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
