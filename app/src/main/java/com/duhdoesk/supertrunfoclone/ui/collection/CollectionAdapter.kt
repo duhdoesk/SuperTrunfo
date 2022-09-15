@@ -1,6 +1,5 @@
 package com.duhdoesk.supertrunfoclone.ui.collection
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,20 +11,24 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.duhdoesk.supertrunfoclone.R
-import com.duhdoesk.supertrunfoclone.datasource.DeckLocalDataSource
 import com.duhdoesk.supertrunfoclone.model.Deck
-import javax.inject.Inject
 
 
-class CollectionAdapter @Inject constructor (private val context: Context, private val deckLocalDataSource: DeckLocalDataSource) :
-    RecyclerView.Adapter<CollectionAdapter.ViewHolder>() {
+class CollectionAdapter : RecyclerView.Adapter<CollectionAdapter.ViewHolder>() {
 
-    private var listOfDecks: List<Deck> = deckLocalDataSource.loadDecks()
+    private var listOfDecks: List<Deck> = emptyList()
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var textView: TextView = view.findViewById(R.id.cardview_text)
-        var imageView: ImageView = view.findViewById(R.id.cardview_card)
-        var bundle: Bundle = bundleOf("col" to adapterPosition)
+    fun setDecks(decks: List<Deck>) {
+        listOfDecks = decks
+    }
+
+    var onCLickListener: ((Deck) -> Unit)? = null
+
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val root: View = view.findViewById(R.id.root)
+        private val tvCard: TextView = view.findViewById(R.id.cardview_text)
+        private val ivCard: ImageView = view.findViewById(R.id.cardview_card)
+        val bundle: Bundle = bundleOf("col" to adapterPosition)
 
         init {
             view.setOnClickListener(
@@ -34,6 +37,14 @@ class CollectionAdapter @Inject constructor (private val context: Context, priva
                     bundle
                 )
             )
+        }
+
+        fun bind(deck: Deck) {
+            tvCard.text = deck.name
+            ivCard.load(deck.img)
+            root.setOnClickListener {
+                onCLickListener?.invoke(deck)
+            }
         }
     }
 
@@ -45,10 +56,9 @@ class CollectionAdapter @Inject constructor (private val context: Context, priva
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.textView.text = listOfDecks[position].name
-        viewHolder.imageView.load(listOfDecks[position].img)
+        val deck = listOfDecks[position]
+        viewHolder.bind(deck)
     }
 
     override fun getItemCount() = listOfDecks.size
-
 }
