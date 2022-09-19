@@ -65,10 +65,6 @@
     </fragment>
     <fragment
         android:id="@+id/destination_about"
-        android:name="com.duhdoesk.supertrunfoclone.ui.etc.AboutFragment"
+        android:name="com.duhdoesk.supertrunfoclone.ui.about.AboutFragment"
         android:label="About" />
-    <fragment
-        android:id="@+id/destination_rules"
-        android:name="com.duhdoesk.supertrunfoclone.ui.etc.RulesFragment"
-        android:label="Rules" />
 </navigation>

@@ -6,9 +6,4 @@
         android:icon="@drawable/ic_baseline_info_24"
         android:title="About" />
 
-    <item
-        android:id="@+id/destination_rules"
-        android:icon="@drawable/ic_baseline_rule_24"
-        android:title="Rules" />
-
 </menu>
