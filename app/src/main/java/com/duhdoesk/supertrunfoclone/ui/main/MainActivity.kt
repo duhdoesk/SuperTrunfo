@@ -51,5 +51,4 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.myNavHostFragment)
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
-
 }
