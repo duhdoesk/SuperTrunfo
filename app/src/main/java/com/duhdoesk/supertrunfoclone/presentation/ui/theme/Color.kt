@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.ui.theme
+package com.duhdoesk.supertrunfoclone.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

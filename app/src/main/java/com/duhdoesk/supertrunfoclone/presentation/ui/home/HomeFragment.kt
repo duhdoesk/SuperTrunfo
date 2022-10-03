@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.ui.home
+package com.duhdoesk.supertrunfoclone.presentation.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,10 +20,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.duhdoesk.supertrunfoclone.R
-import com.duhdoesk.supertrunfoclone.ui.theme.SuperTrunfoTheme
+import com.duhdoesk.supertrunfoclone.presentation.ui.theme.SuperTrunfoTheme
 
 class HomeFragment : Fragment() {
 

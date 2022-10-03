@@ -15,7 +15,7 @@
         decided to code it for practice.\n\n
         Hope you enjoy it and, if you do, don\'t hesitate on contacting me using one of the channels below.
     </string>
-    <string name="collection_pick">Escolha uma coleção:</string>
+    <string name="collection_pick">Escolha um deck:</string>
     <string name="call_button">Chamar</string>
     <string name="card_name">Nome do card</string>
     <string name="opponent_cards">Cards do oponente</string>

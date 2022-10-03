@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperTrunfoClone">
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name="com.duhdoesk.supertrunfoclone.presentation.ui.main.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

@@ -7,9 +7,8 @@
 
     <fragment
         android:id="@+id/destination_title"
-        android:name="com.duhdoesk.supertrunfoclone.ui.home.HomeFragment"
-        android:label="Super Trunfo Battle Cards"
-        tools:layout="@layout/fragment_home">
+        android:name="com.duhdoesk.supertrunfoclone.presentation.ui.home.HomeFragment"
+        android:label="Super Trunfo Battle Cards">
         <action
             android:id="@+id/action_destination_title_to_destination_collection"
             app:destination="@id/destination_collection" />
@@ -17,8 +16,8 @@
 
     <fragment
         android:id="@+id/destination_collection"
-        android:name="com.duhdoesk.supertrunfoclone.ui.collection.CollectionFragment"
-        android:label="Coleções"
+        android:name="com.duhdoesk.supertrunfoclone.presentation.ui.collection.CollectionFragment"
+        android:label="Coleção"
         tools:layout="@layout/fragment_collection">
         <action
             android:id="@+id/action_destination_collection_to_destination_inGame"
@@ -29,7 +28,7 @@
 
     <fragment
         android:id="@+id/destination_inGame"
-        android:name="com.duhdoesk.supertrunfoclone.ui.match.MatchFragment"
+        android:name="com.duhdoesk.supertrunfoclone.presentation.ui.match.MatchFragment"
         android:label="Super Trunfo Battle Cards">
         <action
             android:id="@+id/action_destination_inGame_to_destination_gameWon"
@@ -45,7 +44,7 @@
 
     <fragment
         android:id="@+id/destination_gameWon"
-        android:name="com.duhdoesk.supertrunfoclone.ui.ending.GameWonFragment"
+        android:name="com.duhdoesk.supertrunfoclone.presentation.ui.ending.GameWonFragment"
         android:label="Vitória">
         <action
             android:id="@+id/action_destination_gameWon_to_destination_title"
@@ -57,7 +56,7 @@
 
     <fragment
         android:id="@+id/destination_gameOver"
-        android:name="com.duhdoesk.supertrunfoclone.ui.ending.GameOverFragment"
+        android:name="com.duhdoesk.supertrunfoclone.presentation.ui.ending.GameOverFragment"
         android:label="Derrota"
         tools:layout="@layout/fragment_game_over">
         <action
@@ -70,6 +69,6 @@
 
     <fragment
         android:id="@+id/destination_about"
-        android:name="com.duhdoesk.supertrunfoclone.ui.about.AboutFragment"
+        android:name="com.duhdoesk.supertrunfoclone.presentation.ui.about.AboutFragment"
         android:label="About" />
 </navigation>

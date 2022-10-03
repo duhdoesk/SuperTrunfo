@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.ui.match
+package com.duhdoesk.supertrunfoclone.presentation.ui.match
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

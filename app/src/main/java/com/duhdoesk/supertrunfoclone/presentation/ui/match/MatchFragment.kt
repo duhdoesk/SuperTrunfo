@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.ui.match
+package com.duhdoesk.supertrunfoclone.presentation.ui.match
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,7 +15,7 @@ import coil.request.ErrorResult
 import coil.request.ImageRequest
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.databinding.FragmentMatchBinding
-import com.duhdoesk.supertrunfoclone.ui.match.MatchViewModel.Option.*
+import com.duhdoesk.supertrunfoclone.presentation.ui.match.MatchViewModel.Option.*
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -94,10 +94,10 @@ class MatchFragment : Fragment() {
         vm.matchState.observe(viewLifecycleOwner) {
             when (it) {
                 MatchState.Lost -> {
-                    findNavController().navigate(com.duhdoesk.supertrunfoclone.ui.match.MatchFragmentDirections.actionDestinationInGameToDestinationGameOver())
+                    findNavController().navigate(com.duhdoesk.supertrunfoclone.presentation.ui.match.MatchFragmentDirections.actionDestinationInGameToDestinationGameOver())
                 }
                 MatchState.Won -> {
-                    findNavController().navigate(com.duhdoesk.supertrunfoclone.ui.match.MatchFragmentDirections.actionDestinationInGameToDestinationGameWon())
+                    findNavController().navigate(com.duhdoesk.supertrunfoclone.presentation.ui.match.MatchFragmentDirections.actionDestinationInGameToDestinationGameWon())
                 }
                 is MatchState.NextCard -> {
                     setCardInformation(it)

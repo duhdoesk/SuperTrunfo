@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.ui.ending
+package com.duhdoesk.supertrunfoclone.presentation.ui.ending
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
-import com.duhdoesk.supertrunfoclone.databinding.FragmentGameWonBinding
+import com.duhdoesk.supertrunfoclone.databinding.FragmentGameOverBinding
 
-class GameWonFragment : Fragment() {
+class GameOverFragment : Fragment() {
 
-    private var _binding: FragmentGameWonBinding? = null
+    private var _binding: FragmentGameOverBinding? = null
     private val binding get() = _binding!!
 
     //Inflating and Returning the View with DataBindingUtil
@@ -21,7 +21,7 @@ class GameWonFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         //Inflate the layout for this fragment
-        _binding = FragmentGameWonBinding.inflate(inflater, container, false)
+        _binding = FragmentGameOverBinding.inflate(inflater, container, false)
         return binding.apply {
         }.root
     }
@@ -33,11 +33,11 @@ class GameWonFragment : Fragment() {
         val btNotNow: Button = binding.btNotNow
 
         btLetsDoIt.setOnClickListener(View.OnClickListener {
-            findNavController().navigate(GameWonFragmentDirections.actionDestinationGameWonToDestinationCollection())
+            findNavController().navigate(GameOverFragmentDirections.actionDestinationGameOverToDestinationCollection())
         })
 
         btNotNow.setOnClickListener(View.OnClickListener {
-            findNavController().navigate(GameWonFragmentDirections.actionDestinationGameWonToDestinationTitle())
+            findNavController().navigate(GameOverFragmentDirections.actionDestinationGameOverToDestinationTitle())
         })
     }
 }

@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.ui.collection
+package com.duhdoesk.supertrunfoclone.presentation.ui.collection
 
 import android.os.Bundle
 import android.view.LayoutInflater

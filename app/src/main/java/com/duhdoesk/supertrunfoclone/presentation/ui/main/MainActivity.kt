@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.ui.main
+package com.duhdoesk.supertrunfoclone.presentation.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

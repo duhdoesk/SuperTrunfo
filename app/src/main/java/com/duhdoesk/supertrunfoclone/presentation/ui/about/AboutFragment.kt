@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.ui.about
+package com.duhdoesk.supertrunfoclone.presentation.ui.about
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
