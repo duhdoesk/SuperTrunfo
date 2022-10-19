@@ -174,7 +174,11 @@ class MatchFragment : Fragment() {
                     )
 
                     Text(
-                        text = "${card.attributes.find { it.id == option.toString() }!!.value} ${deck.attributes.find { it.id == option.toString() }!!.unit}",
+                        text = if (card.attributes.find { it.id == option.toString() }!!.value == 99999.0) {
+                            "Turbina"
+                        } else {
+                            "${card.attributes.find { it.id == option.toString() }!!.value} ${deck.attributes.find { it.id == option.toString() }!!.unit}"
+                        },
                         textAlign = TextAlign.End,
                         style = MaterialTheme.typography.h6,
                         modifier = Modifier
