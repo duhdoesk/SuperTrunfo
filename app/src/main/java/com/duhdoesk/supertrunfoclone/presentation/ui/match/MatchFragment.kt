@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -50,6 +51,9 @@ class MatchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         viewModel.matchStart(args.collection)
+
+        (activity as AppCompatActivity).supportActionBar?.title =
+            "Super Trunfo ${viewModel.deck!!.name}"
 
         return ComposeView(requireContext()).apply {
 
