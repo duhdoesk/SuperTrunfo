@@ -14,7 +14,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.duhdoesk.supertrunfoclone.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-const val DEFAULT_IMAGE = R.drawable.ic_launcher_background
+const val DEFAULT_IMAGE = R.drawable.default_placeholder
 
 @SuppressLint("UnrememberedMutableState")
 @ExperimentalCoroutinesApi

@@ -1,12 +1,15 @@
 package com.duhdoesk.supertrunfoclone.presentation.ui.match
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import com.duhdoesk.supertrunfoclone.datasource.DeckLocalDataSource
 import com.duhdoesk.supertrunfoclone.model.Card
 import com.duhdoesk.supertrunfoclone.model.Deck
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 sealed class MatchState {
@@ -18,21 +21,23 @@ sealed class MatchState {
 @HiltViewModel
 class MatchViewModel @Inject constructor(private val deckLocalDataSource: DeckLocalDataSource) : ViewModel() {
 
-    private var myCards: MutableList<Card> = mutableListOf()
-    private var oppCards: MutableList<Card> = mutableListOf()
-
-    val deck = MutableLiveData<Deck>()
-    var cardCounts = MutableLiveData<Pair<Int, Int>>()
-    val matchState = MutableLiveData<MatchState>()
-
     enum class Option {
         A, B, C, D
     }
 
+    private var myCards: MutableList<Card> = mutableListOf()
+    private var oppCards: MutableList<Card> = mutableListOf()
+
+    var deck by mutableStateOf<Deck?>(null)
+    var cardCounts by mutableStateOf<Pair<Int, Int>>(Pair(0, 0))
+
+    var matchState = MutableStateFlow<MatchState>(MatchState.Won)
+    var state = matchState.asStateFlow()
+
     var selectedOption: Option? = null
 
     fun matchStart(deckId: String) {
-        deck.value = getDeckAndShuffle(deckId)
+        deck = getDeckAndShuffle(deckId)
         dealCards()
     }
 
@@ -44,9 +49,11 @@ class MatchViewModel @Inject constructor(private val deckLocalDataSource: DeckLo
         val opAtt: Double = oCard.attributes.find { it.id == selectedOption.toString() }!!.value
 
         val winner: Boolean = myAtt > opAtt
+
         passingCard(winner)
+
         cardBattleLogger(winner, myCard, oCard)
-        selectedOption = null
+
         return winner
     }
 
@@ -75,11 +82,11 @@ class MatchViewModel @Inject constructor(private val deckLocalDataSource: DeckLo
 
 
     private fun dealCards() {
-        deck.value?.let {
+        deck!!.let { it ->
             myCards = it.cards.subList(0, (it.cards.size + 1) / 2).toMutableList()
             oppCards = it.cards.subList((it.cards.size + 1) / 2, it.cards.size).toMutableList()
             matchState.value = MatchState.NextCard(myCards[0], oppCards[0])
-            cardCounts.value = myCards.size to oppCards.size
+            cardCounts = myCards.size to oppCards.size
         }
     }
 
@@ -98,7 +105,7 @@ class MatchViewModel @Inject constructor(private val deckLocalDataSource: DeckLo
         myCards.removeAt(0)
         oppCards.removeAt(0)
 
-        cardCounts.value = myCards.size to oppCards.size
+        cardCounts = myCards.size to oppCards.size
 
         if (myCards.isEmpty()) {
             matchState.value = MatchState.Lost

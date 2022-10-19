@@ -1,135 +1,258 @@
 package com.duhdoesk.supertrunfoclone.presentation.ui.match
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import coil.load
-import coil.request.ErrorResult
-import coil.request.ImageRequest
 import com.duhdoesk.supertrunfoclone.R
-import com.duhdoesk.supertrunfoclone.databinding.FragmentMatchBinding
-import com.duhdoesk.supertrunfoclone.presentation.ui.match.MatchViewModel.Option.*
-import com.google.android.material.snackbar.Snackbar
+import com.duhdoesk.supertrunfoclone.model.Card
+import com.duhdoesk.supertrunfoclone.presentation.ui.theme.*
+import com.duhdoesk.supertrunfoclone.util.DEFAULT_IMAGE
+import com.duhdoesk.supertrunfoclone.util.loadPicture
 import dagger.hilt.android.AndroidEntryPoint
+import com.duhdoesk.supertrunfoclone.presentation.ui.match.MatchViewModel.Option.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
+import com.google.android.material.snackbar.Snackbar
 
 @AndroidEntryPoint
 class MatchFragment : Fragment() {
 
-    private val vm: MatchViewModel by viewModels()
+    private val viewModel: MatchViewModel by viewModels()
     private val args: MatchFragmentArgs by navArgs()
 
-    private lateinit var _binding: FragmentMatchBinding
-    private val binding get() = _binding
-
+    @SuppressLint("StateFlowValueCalledInComposition")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMatchBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        viewModel.matchStart(args.collection)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        return ComposeView(requireContext()).apply {
 
-        vm.matchStart(args.collection)
+            lifecycleScope.launch {
 
-        binding.buttonCall.setOnClickListener {
-            if (vm.selectedOption == null) {
-                Snackbar.make(
-                    view,
-                    "Por favor, escolha uma opção para chamar.",
-                    Snackbar.LENGTH_SHORT
-                ).show()
-            } else {
-                if (vm.cardBattle()) {
-                    Snackbar.make(view, "Você venceu! Boa escolha :)", Snackbar.LENGTH_SHORT).show()
-                } else {
-                    Snackbar.make(view, "Você perdeu essa :(", Snackbar.LENGTH_SHORT).show()
+                viewModel.state.collect { state ->
+                    when (state) {
+                        is MatchState.Won -> {
+                            findNavController().navigate(R.id.action_destination_inGame_to_destination_gameWon)
+                        }
+                        is MatchState.Lost -> {
+                            findNavController().navigate(R.id.action_destination_inGame_to_destination_gameOver)
+                        }
+                        is MatchState.NextCard -> {
+                            setContent {
+                                SuperTrunfoTheme {
+                                    Surface {
+                                        SetMatchFragment(state.myCard)
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
-        }
-
-        binding.btSuperTrunfo.setOnClickListener {
-            val (winner, rivalCardId) = vm.superTrunfoCall()
-            val result = when (winner) {
-                true -> "Você venceu :)"
-                else -> "Você perdeu o Super Trunfo :("
-            }
-            Snackbar.make(
-                view,
-                "Id do card rival: $rivalCardId. $result",
-                Snackbar.LENGTH_SHORT
-            ).show()
-        }
-
-        binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.radioOption1 -> vm.selectedOption = A
-                R.id.radioOption2 -> vm.selectedOption = B
-                R.id.radioOption3 -> vm.selectedOption = C
-                R.id.radioOption4 -> vm.selectedOption = D
-            }
-        }
-
-        vm.deck.observe(viewLifecycleOwner) { deck ->
-            val deckAtt = deck.attributes
-            binding.radioOption1.text = deckAtt.find { it.id == "A" }!!.label
-            binding.radioOption2.text = deckAtt.find { it.id == "B" }!!.label
-            binding.radioOption3.text = deckAtt.find { it.id == "C" }!!.label
-            binding.radioOption4.text = deckAtt.find { it.id == "D" }!!.label
-
-            (activity as AppCompatActivity).supportActionBar?.title =
-                "Super Trunfo ${deck.name}"
-        }
-
-        vm.matchState.observe(viewLifecycleOwner) {
-            when (it) {
-                MatchState.Lost -> {
-                    findNavController().navigate(com.duhdoesk.supertrunfoclone.presentation.ui.match.MatchFragmentDirections.actionDestinationInGameToDestinationGameOver())
-                }
-                MatchState.Won -> {
-                    findNavController().navigate(com.duhdoesk.supertrunfoclone.presentation.ui.match.MatchFragmentDirections.actionDestinationInGameToDestinationGameWon())
-                }
-                is MatchState.NextCard -> {
-                    setCardInformation(it)
-                }
-            }
-        }
-
-        vm.cardCounts.observe(viewLifecycleOwner) { (myCards, oCards) ->
-            binding.tvYourCardsNumber.text = myCards.toString()
-            binding.tvOppCardsNumber.text = oCards.toString()
         }
     }
 
-    private fun setCardInformation(state: MatchState.NextCard) {
-        binding.ivCardArt.load(state.myCard.img) {
-            listener(onError = { _: ImageRequest, _: ErrorResult ->
-                binding.ivCardArt.setImageResource(R.drawable.ic_launcher_background)
-            })
+    @SuppressLint("StateFlowValueCalledInComposition")
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Composable
+    fun SetMatchFragment(card: Card) {
+
+        val radioOptions = listOf(A, B, C, D)
+        val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
+        val deck = viewModel.deck!!
+
+        Column(modifier = Modifier
+            .fillMaxWidth()) {
+            Row(modifier = Modifier
+                .fillMaxWidth()
+                .height(240.dp)) {
+                card.img.let { url ->
+                    val image = loadPicture(url = url, defaultImage = DEFAULT_IMAGE).value
+                    image?.let { img ->
+                        Image(
+                            bitmap = img.asImageBitmap(),
+                            contentDescription = "Deck image",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .fillMaxSize()
+                        )
+                    }
+                }
+            }
+
+            Row(modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(8.dp),
+                Arrangement.SpaceBetween,
+                Alignment.CenterVertically
+            ) {
+
+                Text(
+                    text = card.name,
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier
+                        .fillMaxWidth(0.85f)
+                )
+
+                Text(
+                    text = card.id,
+                    color = Yellow,
+                    textAlign = TextAlign.End,
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+            }
+
+            Spacer(modifier = Modifier
+                .fillMaxWidth()
+                .height(8.dp))
+
+            radioOptions.forEach { option ->
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 4.dp, vertical = 2.dp)
+                        .height(40.dp)
+                        .background(if ((option == B) || (option == D)) MediumGrey else DarkGrey)
+                        .selectable(
+                            selected = (option == selectedOption),
+                            onClick = {
+                                onOptionSelected(option)
+                                viewModel.selectedOption = option
+                            },
+                            role = Role.RadioButton
+                        )
+                ) {
+                    RadioButton(
+                        selected = (option == selectedOption),
+                        onClick = null,
+                        colors = RadioButtonDefaults.colors(
+                            selectedColor = Yellow
+                        ),
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
+                    Text(
+                        text = deck.attributes.find { it.id == option.toString() }!!.label,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier
+                            .fillMaxWidth(0.6f)
+                            .padding(start = 8.dp)
+                    )
+
+                    Text(
+                        text = "${card.attributes.find { it.id == option.toString() }!!.value} ${deck.attributes.find { it.id == option.toString() }!!.unit}",
+                        textAlign = TextAlign.End,
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(end = 8.dp)
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier
+                .fillMaxWidth()
+                .height(16.dp))
+
+            Row() {
+                Text(
+                    text = stringResource(id = R.string.your_cards),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth(0.5f)
+                        .padding(horizontal = 8.dp)
+                )
+
+                Text(
+                    text = stringResource(id = R.string.opponent_cards),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp)
+                )
+            }
+
+            Row(Modifier.padding(top = 4.dp)) {
+                Text(
+                    text = viewModel.cardCounts.first.toString(),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h5,
+                    modifier = Modifier
+                        .fillMaxWidth(0.5f)
+                        .padding(horizontal = 8.dp)
+                )
+
+                Text(
+                    text = viewModel.cardCounts.second.toString(),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h5,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp)
+                )
+            }
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = if (card.joker) Arrangement.SpaceAround else Arrangement.Center,
+                modifier = Modifier.fillMaxSize()
+            ) {
+
+                if (card.joker) {
+                    Button(onClick = {
+                        val result = viewModel.superTrunfoCall()
+                        view?.let {
+                            if (result.first) {
+                                Snackbar
+                                    .make(it, "GGWP :) Card oponente: id ${result.second}", Snackbar.LENGTH_SHORT)
+                                    .show()
+                            } else {
+                                Snackbar
+                                    .make(it, "Bad News :( Card oponente: id ${result.second}", Snackbar.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
+                    }) {
+                        Text(stringResource(id = R.string.super_trunfo))
+                    }
+                }
+                
+                Button(onClick = {
+                    if (viewModel.selectedOption == null) viewModel.selectedOption = selectedOption
+                    viewModel.cardBattle()
+                }) { Text(stringResource(id = R.string.call_button)) }
+
+            }
         }
-
-        binding.tvCardId.text = state.myCard.id
-        binding.tvCardName.text = state.myCard.name
-
-        val myAtt = state.myCard.attributes
-        val deckAtt = vm.deck.value!!.attributes
-        binding.tvOption1.text = "${myAtt.find { it.id == "A" }!!.value} ${deckAtt.find { it.id == "A" }!!.unit}"
-        binding.tvOption2.text = "${myAtt.find { it.id == "B" }!!.value} ${deckAtt.find { it.id == "B" }!!.unit}"
-        binding.tvOption3.text = "${myAtt.find { it.id == "C" }!!.value} ${deckAtt.find { it.id == "C" }!!.unit}"
-        binding.tvOption4.text = "${myAtt.find { it.id == "D" }!!.value} ${deckAtt.find { it.id == "D" }!!.unit}"
-
-        binding.radioGroup.clearCheck()
-
-        binding.btSuperTrunfo.isVisible = state.myCard.joker
     }
 }
