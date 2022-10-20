@@ -9,17 +9,18 @@
         Veja a seção about para mais informações.
     </string>
     <string name="about_description">
-        Hi!\n
-        I\'m Eduardo Scaranari, the developer of this app.\n\n
-        As a huge fan of the Grow\'s Super Trunfo Battle Cards and also an Android student, I just
-        decided to code it for practice.\n\n
-        Hope you enjoy it and, if you do, don\'t hesitate on contacting me using one of the channels below.
+        Olá!\n
+        Eu sou Eduardo, o desenvolvedor deste app.\n\n
+        Como fã do jogo da Grow - o qual cresci jogando com meus amigos - e também estudante de
+        desenvolvimento Android, pensei que seria uma ótima oportunidade para aprimorar meus
+        conhecimentos e habilidades.\n\n
+        Espero que você goste e, caso deseje, não hesite em me contatar através de um dos canais abaixo.
     </string>
     <string name="collection_pick">Escolha um deck:</string>
     <string name="call_button">Chamar</string>
     <string name="card_name">Nome do card</string>
-    <string name="opponent_cards">Cards do oponente</string>
-    <string name="your_cards">Seus cards</string>
+    <string name="opponent_cards">Oponente</string>
+    <string name="your_cards">Você</string>
     <string name="number_your_cards">0</string>
     <string name="number_opp_cards">0</string>
     <string name="your_stat">Você</string>
