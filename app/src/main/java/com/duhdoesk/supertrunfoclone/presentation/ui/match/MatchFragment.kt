@@ -1,6 +1,7 @@
 package com.duhdoesk.supertrunfoclone.presentation.ui.match
 
 import android.annotation.SuppressLint
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,6 +44,7 @@ class MatchFragment : Fragment() {
 
     private val viewModel: MatchViewModel by viewModels()
     private val args: MatchFragmentArgs by navArgs()
+    private lateinit var mediaPlayer: MediaPlayer
 
     @SuppressLint("StateFlowValueCalledInComposition")
     override fun onCreateView(
@@ -54,6 +56,12 @@ class MatchFragment : Fragment() {
 
         (activity as AppCompatActivity).supportActionBar?.title =
             "Super Trunfo ${viewModel.deck!!.name}"
+
+        when (viewModel.deck!!.id) {
+            "1" -> R.raw.deck_1
+            "2" -> R.raw.deck_2
+            else -> null
+        }?.let { sfxPlayer(it) }
 
         return ComposeView(requireContext()).apply {
 
@@ -262,5 +270,16 @@ class MatchFragment : Fragment() {
 
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer.stop()
+        mediaPlayer.release()
+    }
+
+    private fun sfxPlayer(raw: Int) {
+        mediaPlayer = MediaPlayer.create(context, raw)
+        mediaPlayer.start()
     }
 }
