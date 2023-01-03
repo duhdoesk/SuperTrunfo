@@ -10,6 +10,8 @@ import androidx.navigation.ui.*
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -38,6 +40,8 @@ class MainActivity : AppCompatActivity() {
             val bool = !(destination.id == R.id.destination_gameOver || destination.id == R.id.destination_gameWon)
             supportActionBar?.setDisplayHomeAsUpEnabled(bool)
         })
+
+        Firebase.database.setPersistenceEnabled(true)
     }
 
     override fun onSupportNavigateUp(): Boolean {

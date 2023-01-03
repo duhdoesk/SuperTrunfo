@@ -12,6 +12,9 @@ plugins {
     id "kotlin-kapt"
     id "dagger.hilt.android.plugin"
 
+//    Firebase
+    id 'com.google.gms.google-services'
+
 }
 
 android {
@@ -97,6 +100,16 @@ dependencies {
 //    Glide
     implementation 'com.github.bumptech.glide:glide:4.14.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.1'
+
+//    Firebase
+//    Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
+
+//    Add the dependency for the Firebase SDK for Google Analytics
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+//    Add Realtime Database Dependencies
+    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
 }
 
 kapt {

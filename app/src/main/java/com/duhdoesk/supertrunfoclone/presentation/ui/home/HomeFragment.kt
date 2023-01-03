@@ -11,6 +11,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
@@ -22,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.duhdoesk.supertrunfoclone.R
+import com.duhdoesk.supertrunfoclone.model.Deck
 import com.duhdoesk.supertrunfoclone.presentation.ui.theme.SuperTrunfoTheme
 
 class HomeFragment : Fragment() {
@@ -37,7 +40,12 @@ class HomeFragment : Fragment() {
             }
         }
     }
-    
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val decks: MutableState<List<Deck>> = mutableStateOf(ArrayList())
+    }
+
     @Preview
     @Composable
     private fun SetHomeFragment() {

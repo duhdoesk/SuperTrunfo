@@ -1,4 +1,4 @@
-package com.duhdoesk.supertrunfoclone.datasource
+package com.duhdoesk.supertrunfoclone.data.collection
 
 import com.duhdoesk.supertrunfoclone.model.Deck
 import com.duhdoesk.supertrunfoclone.util.JsonFileReader

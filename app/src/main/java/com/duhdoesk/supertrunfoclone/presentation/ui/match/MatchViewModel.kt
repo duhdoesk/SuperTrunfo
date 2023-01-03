@@ -3,12 +3,11 @@ package com.duhdoesk.supertrunfoclone.presentation.ui.match
 import android.util.Log
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
-import com.duhdoesk.supertrunfoclone.datasource.DeckLocalDataSource
+import com.duhdoesk.supertrunfoclone.data.collection.DeckLocalDataSource
 import com.duhdoesk.supertrunfoclone.model.Card
 import com.duhdoesk.supertrunfoclone.model.Deck
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 

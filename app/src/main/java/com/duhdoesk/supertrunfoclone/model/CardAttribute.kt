@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class CardAttribute(
-    val id: String,
-    var value: Double
+    val id: String = "",
+    var value: Double = 0.0
 )

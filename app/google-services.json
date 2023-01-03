@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "178431915635",
+    "firebase_url": "https://duhdoesk-supertrunfo-default-rtdb.firebaseio.com",
+    "project_id": "duhdoesk-supertrunfo",
+    "storage_bucket": "duhdoesk-supertrunfo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178431915635:android:9715dcffa2d89937c05c06",
+        "android_client_info": {
+          "package_name": "com.duhdoesk.supertrunfoclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178431915635-23p5s038gad7qcnqjsls0kk46kqh6oqo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.duhdoesk.supertrunfoclone",
+            "certificate_hash": "b88bec768dbe276bb82b813ab049aa2302a08e0b"
+          }
+        },
+        {
+          "client_id": "178431915635-gha36vd6p08lpvcu72oq1qenlbgfeeae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj2ZkKlCyToXTz8MNsUz0NJ8C0DbAcsWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "178431915635-gha36vd6p08lpvcu72oq1qenlbgfeeae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,6 +12,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
@@ -62,21 +63,38 @@ class CollectionFragment : Fragment() {
                             )
                     )
 
-                    LazyColumn(modifier = Modifier.padding(8.dp)) {
-                        itemsIndexed(items = decks) { _, deck ->
-                            DeckCard(
-                                deck = deck,
-                                onClick = {
-                                    findNavController().navigate(
-                                        CollectionFragmentDirections.actionDestinationCollectionToDestinationInGame(
-                                            deck.id
-                                        )
+                    if (decks.isEmpty()) {
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            Text(
+                                text = stringResource(id = R.string.waiting_connection),
+                                textAlign = TextAlign.Center,
+                                style = MaterialTheme.typography.caption,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(
+                                        start = 8.dp, end = 8.dp, top = 8.dp
                                     )
-                                }
                             )
                         }
+                    } else {
+                        LazyColumn(modifier = Modifier.padding(8.dp)) {
+                            itemsIndexed(items = decks) { _, deck ->
+                                DeckCard(
+                                    deck = deck,
+                                    onClick = {
+                                        findNavController().navigate(
+                                            CollectionFragmentDirections.actionDestinationCollectionToDestinationInGame(
+                                                deck.id
+                                            )
+                                        )
+                                    }
+                                )
+                            }
+                        }
                     }
-
                 }
             }
         }
