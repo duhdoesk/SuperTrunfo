@@ -14,12 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.model.Deck
 import com.duhdoesk.supertrunfoclone.presentation.ui.theme.Yellow
-import com.duhdoesk.supertrunfoclone.util.DEFAULT_IMAGE
 import com.duhdoesk.supertrunfoclone.util.loadPicture
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -41,7 +40,7 @@ fun DeckCard(deck: Deck, onClick: () -> Unit) {
                 .wrapContentSize()
         ) {
             deck.img?.let { url ->
-                val image = loadPicture(url = url, defaultImage = DEFAULT_IMAGE).value
+                val image = loadPicture(url = url, defaultImage = R.drawable.default_placeholder).value
                 image?.let { img ->
                     Image(
                         bitmap = img.asImageBitmap(),

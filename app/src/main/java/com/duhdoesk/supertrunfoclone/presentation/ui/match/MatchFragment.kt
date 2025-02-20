@@ -31,7 +31,6 @@ import androidx.navigation.fragment.navArgs
 import com.duhdoesk.supertrunfoclone.R
 import com.duhdoesk.supertrunfoclone.model.Card
 import com.duhdoesk.supertrunfoclone.presentation.ui.theme.*
-import com.duhdoesk.supertrunfoclone.util.DEFAULT_IMAGE
 import com.duhdoesk.supertrunfoclone.util.loadPicture
 import dagger.hilt.android.AndroidEntryPoint
 import com.duhdoesk.supertrunfoclone.presentation.ui.match.MatchViewModel.Option.*
@@ -105,7 +104,7 @@ class MatchFragment : Fragment() {
                 .fillMaxWidth()
                 .height(240.dp)) {
                 card.img.let { url ->
-                    val image = loadPicture(url = url, defaultImage = DEFAULT_IMAGE).value
+                    val image = loadPicture(url = url, defaultImage = R.drawable.default_placeholder).value
                     image?.let { img ->
                         Image(
                             bitmap = img.asImageBitmap(),

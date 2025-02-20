@@ -11,10 +11,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.duhdoesk.supertrunfoclone.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-
-const val DEFAULT_IMAGE = R.drawable.default_placeholder
 
 @SuppressLint("UnrememberedMutableState")
 @ExperimentalCoroutinesApi
@@ -28,7 +25,7 @@ fun loadPicture(url: String, @DrawableRes defaultImage: Int): MutableState<Bitma
         .asBitmap()
         .load(defaultImage)
         .into(object : CustomTarget<Bitmap>() {
-            override fun onLoadCleared(placeholder: Drawable?) { }
+            override fun onLoadCleared(placeholder: Drawable?) {}
             override fun onResourceReady(
                 resource: Bitmap,
                 transition: Transition<in Bitmap>?
@@ -42,7 +39,7 @@ fun loadPicture(url: String, @DrawableRes defaultImage: Int): MutableState<Bitma
         .asBitmap()
         .load(url)
         .into(object : CustomTarget<Bitmap>() {
-            override fun onLoadCleared(placeholder: Drawable?) { }
+            override fun onLoadCleared(placeholder: Drawable?) {}
             override fun onResourceReady(
                 resource: Bitmap,
                 transition: Transition<in Bitmap>?
